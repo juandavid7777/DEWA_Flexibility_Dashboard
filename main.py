@@ -188,5 +188,10 @@ for i in pp:
 fig = plt.figure()
 plt.plot(qaux)
 
+values = st.slider(
+     'Select a flexible set point',
+     15, 35, 18)
+st.write('Values:', values)
+
 st.pyplot(fig)
 
