@@ -1,7 +1,6 @@
 
 import streamlit as st
 import numpy as np
-%matplotlib inline
 from matplotlib import pyplot as plt
 from scipy.integrate import cumtrapz as ctz
 
