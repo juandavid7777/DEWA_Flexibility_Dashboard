@@ -1,7 +1,12 @@
+
+import streamlit as st
 import numpy as np
 %matplotlib inline
 from matplotlib import pyplot as plt
 from scipy.integrate import cumtrapz as ctz
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 #----------------------------------------------
 
@@ -181,5 +186,5 @@ for i in pp:
     Tf2[i+1]=(Delta_t/Cf2)*(((Tg-Tf2[i])/(Rf2g+r0f))+((Tf1[i]-Tf2[i])/Rf1f2))+Tf2[i]
 
     
-    plt.plot(qaux)
+    st.pyplot(plt.plot(qaux))
 
