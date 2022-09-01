@@ -7,6 +7,17 @@ from scipy.integrate import cumtrapz as ctz
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# Use inputs ---------------------------------
+
+fstp = st.slider(
+     'Select a flexible set point',
+     15, 35, 18)
+st.write('Values:', fstp)
+
+
+
+
+
 #----------------------------------------------
 
 #concrete properties
@@ -45,7 +56,7 @@ r0w=2*1/(uw*Af)
 #insulation for roof and floor
 
 uff=1/4; #U<0.3
-r0f=1/uff*Af;
+r0f=1/uff*Af
 
 #thermal resistance of the slab
 
@@ -138,9 +149,9 @@ Tsp=np.ones((1200,1))*24
 
 Tsp2=np.ones((1200,1))*24
 
-Tsp2[791:830]=20
+Tsp2[791:830]=fstp
 
-Tsp2[1021:1060]=20
+Tsp2[1021:1060]=fstp
 
 #----------------------------------------------------
 
@@ -148,9 +159,9 @@ pp=np.arange(0,1200-1)
 
 for i in pp:
     
-    if Tsp[i]<T1[i]:
+    if Tsp2[i]<T1[i]:
         
-        Error[i+1]=T1[i]-Tsp[i]
+        Error[i+1]=T1[i]-Tsp2[i]
     else:
         Error[i+1]=0
     
@@ -187,11 +198,6 @@ for i in pp:
     
 fig = plt.figure()
 plt.plot(qaux)
-
-values = st.slider(
-     'Select a flexible set point',
-     15, 35, 18)
-st.write('Values:', values)
 
 st.pyplot(fig)
 
