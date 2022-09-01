@@ -185,5 +185,8 @@ for i in pp:
     Tf2[i+1]=(Delta_t/Cf2)*(((Tg-Tf2[i])/(Rf2g+r0f))+((Tf1[i]-Tf2[i])/Rf1f2))+Tf2[i]
 
     
-    st.pyplot(plt.plot(qaux))
+fig = plt.figure()
+plt.plot(qaux)
+
+st.pyplot(fig)
 
