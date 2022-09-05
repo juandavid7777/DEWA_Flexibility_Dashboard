@@ -83,7 +83,7 @@ Tg=20
 #Loads environmental data variables ---------------------------
 
 #Import time series data variables (U)
-data= pd.read_csv('Data2.csv', parse_dates = ["date"], dayfirst  =True)
+data = pd.read_csv('Data.csv', parse_dates = ["date"], dayfirst  =True)
 data = data.set_index("date", drop = False)
 
 #Estimates solar temperatures
