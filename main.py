@@ -36,7 +36,7 @@ st.write('Date:', date_day_select)
 appointment = st.sidebar.slider(
      "Demand response event time:",
      value=(time(7, 30), time(14, 45)))
-st.write("Demand response event time:", appointment)
+st.write("Demand response event time:", appointment[1])
 
 
 # Material properties -------------------------------------------------------------------------
