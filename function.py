@@ -23,6 +23,7 @@ def simulate(data,param, x0, tsp = "tsp"):
     R2f1 = param["R2f1"]
     Rf1f2 = param["Rf1f2"]
     Rf2g = param["Rf2g"]
+    Tg = param["Tg"]
 
     #Runs simulation
     for i in range(1,len(data)+1):
