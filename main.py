@@ -116,7 +116,7 @@ data_sim["tsp"] = tsp
 data_sim["tsp2"] = tsp
 
 #Set point modification over period
-tsp2 = 20
+tsp2 = fstp
 hour_s = 7    #hour start
 hour_e = 12   #hour end
 
