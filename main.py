@@ -54,7 +54,7 @@ r0w=2*1/(uw*Af)
 
 #Insulation for roof and floor
 uff=1/4; #U<0.3
-r0f=1/uff*Af;
+r0f=1/uff*Af
 
 #Thermal resistance of the slab
 Rf1f2=Lf/(2*Kcon*Af)
@@ -84,9 +84,8 @@ Kp=1000
 Tg=20
 
 #Loads environmental data variables -------------------------------------------------------------
-
 #Import time series data variables (U)
-data = pd.read_csv('Data.csv', parse_dates = ["date"], dayfirst  =True)
+data = pd.read_csv('environment_data.csv', parse_dates = ["date"], dayfirst  =True)
 data = data.set_index("date", drop = False)
 
 #Estimates solar temperatures
@@ -99,7 +98,7 @@ for var in solar_vars:
     data[var_name] = data["To"] + (0.3* data[var]/10)
 
 
-#slices selected dates data for a n day simulation --------------
+#slices selected dates data for a n day simulation ---------------------------------------------
 date_day_str = "2019-07-01"
 date_day = datetime.strptime(date_day_str,'%Y-%m-%d')
 
@@ -125,7 +124,7 @@ hour_e = 12   #hour end
 data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].hour >= hour_s) & (x["date"].hour < hour_e)) else tsp, axis = 1)
 data_sim["tsp2"].plot() #.loc[date_day_str]
 
-# Simulation
+# Simulation ----------------------------------------------------------------------------------
     #Gets parameters
 param_names = ["Kp", "qmax", "Delta_t", "C_air", "Cw", "Cf1", "Cf2", "R12", "R10", "R1sw1", "R1win", "r0w", "Rwcon", "r0f", "rwin", "R2f1", "Rf1f2", "Rf2g", "Tg" ]
 param_values = [Kp, qmax, Delta_t, C_air, Cw, Cf1, Cf2, R12, R10, R1sw1, R1win, r0w, Rwcon, r0f, rwin, R2f1, Rf1f2, Rf2g, Tg ]
@@ -141,13 +140,12 @@ result = simulate(data_sim, params, x0, tsp = "tsp")
 data_sim = data_sim.reset_index(drop = True)
 df_bs = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
-
 #Simulate baseline data
 result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
-    
+#Plotting -------------------------------------------------------------------------------------   
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_bs = df_bs.loc[date_day_str]
