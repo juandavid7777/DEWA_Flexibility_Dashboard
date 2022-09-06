@@ -14,9 +14,9 @@ from plotly.subplots import make_subplots
 
 # Use inputs ---------------------------------------------------------------------------------
 
-fstp = st.slider(
-     'Select a flexible set point',
-     15, 35, 18)
+fstp = st.sidebar.slider(
+     'Flexible set point',
+     15, 35, 20)
 st.write('Flexible setpoint (C):', fstp)
 
 
