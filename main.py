@@ -38,7 +38,7 @@ st.write('Date:', date_day_select)
 
 dr_time = st.sidebar.slider(
      "Demand response event time:",
-     value=(time(7, 30), time(14, 45)))
+     value=(time(7, 00), time(13, 00)))
 
 
 # Material properties -------------------------------------------------------------------------
