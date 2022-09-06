@@ -151,7 +151,7 @@ result = simulate(data_sim, params, x0, tsp = "tsp")
 data_sim = data_sim.reset_index(drop = True)
 df_bs = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
-#Simulate baseline data
+#Simulate flexible data
 result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
