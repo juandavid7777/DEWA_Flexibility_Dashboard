@@ -20,7 +20,7 @@ def simulate(data,param, x0, tsp = "tsp"):
     Rwcon = param["Rwcon"]
     r0f = param["r0f"]
     rwin = param["rwin"]
-    R2f1 = param["R2f1 "]
+    R2f1 = param["R2f1"]
     Rf1f2 = param["Rf1f2"]
     Rf2g = param["Rf2g"]
 
