@@ -24,6 +24,13 @@ fstp = st.sidebar.slider(
      15, 35, 24)
 st.write('Flexible setpoint (C):', fstp)
 
+date_day_select = st.sidebar.date_input(
+     "Analysis date",
+     datetime.date(2019, 7, 6),
+     datetime.date(2019, 1, 6),
+     datetime.date(2019, 12, 30))
+st.write('Date:', date_day_select)
+
 
 # Material properties -------------------------------------------------------------------------
 Lf=0.1
