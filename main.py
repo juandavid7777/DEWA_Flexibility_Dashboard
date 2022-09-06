@@ -13,6 +13,11 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # Use inputs ---------------------------------------------------------------------------------
+sp = st.sidebar.slider(
+     'Flexible set point',
+     15, 35, 24)
+st.write('Baseline setpoint (C):', sp)
+
 
 fstp = st.sidebar.slider(
      'Flexible set point',
@@ -111,7 +116,7 @@ date_1dafter = date_day+d_p1
 data_sim = data.loc[date_5dbefore:date_1dafter]
 
 #Set point definitions
-tsp = 24
+tsp = sp
 data_sim["tsp"] = tsp
 data_sim["tsp2"] = tsp
 
