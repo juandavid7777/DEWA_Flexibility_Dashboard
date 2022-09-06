@@ -14,14 +14,14 @@ from plotly.subplots import make_subplots
 
 # Use inputs ---------------------------------------------------------------------------------
 sp = st.sidebar.slider(
-     'Flexible set point',
+     'Baseline setpoint',
      15, 35, 24)
 st.write('Baseline setpoint (C):', sp)
 
 
 fstp = st.sidebar.slider(
-     'Flexible set point',
-     15, 35, 20)
+     'Flexible setpoint',
+     15, 35, 24)
 st.write('Flexible setpoint (C):', fstp)
 
 
