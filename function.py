@@ -1,10 +1,10 @@
 from collections import defaultdict
 import pandas as pd
+import streamlit as st
 
-
+@st.cache(suppress_st_warning=True)
 def simulate(data,param, x0, tsp = "tsp"):
 
-    
     stats = defaultdict(list)
 
     #Gets model parameters
@@ -112,5 +112,13 @@ def simulate(data,param, x0, tsp = "tsp"):
     result = pd.DataFrame().from_dict(stats)
     
     return result
+
+@st.cache(suppress_st_warning=True)
+def download_data_csv(url):
+
+    df = pd.read_csv(url, parse_dates = ["date"], dayfirst  =True)
+
+    return df
+
 
     

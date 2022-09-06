@@ -5,7 +5,7 @@ from collections import defaultdict
 from matplotlib import pyplot as plt
 from scipy.integrate import cumtrapz as ctz
 import streamlit as st
-from function import simulate
+from function import simulate, download_data_csv
 
 from datetime import datetime,timedelta
 
@@ -85,7 +85,7 @@ Tg=20
 
 #Loads environmental data variables -------------------------------------------------------------
 #Import time series data variables (U)
-data = pd.read_csv('environment_data.csv', parse_dates = ["date"], dayfirst  =True)
+data = download_data_csv('environment_data.csv') 
 data = data.set_index("date", drop = False)
 
 #Estimates solar temperatures
