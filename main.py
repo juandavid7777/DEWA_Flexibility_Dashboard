@@ -130,7 +130,7 @@ hour_s = dr_time[0]    #hour start
 hour_e = dr_time[1]   #hour end
 
 #Applies alternative setpoint
-data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].time >= hour_s) & (x["date"].time < hour_e)) else tsp, axis = 1)
+data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].time() >= hour_s) & (x["date"].time() < hour_e)) else tsp, axis = 1)
 data_sim["tsp2"].plot() #.loc[date_day_str]
 
 # Simulation ----------------------------------------------------------------------------------
