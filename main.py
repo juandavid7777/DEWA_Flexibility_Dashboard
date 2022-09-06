@@ -7,7 +7,7 @@ from scipy.integrate import cumtrapz as ctz
 import streamlit as st
 from function import simulate, download_data_csv
 
-from datetime import datetime,timedelta
+from datetime import datetime, timedelta, time
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -31,6 +31,12 @@ date_day_select = st.sidebar.date_input(
      max_value = datetime(2019, 12, 30)
      )
 st.write('Date:', date_day_select)
+
+
+appointment = st.sidebar.slider(
+     "Demand response time:",
+     value=(time(7, 30), time(14, 45)))
+st.write("Demand resposne time:", appointment)
 
 
 # Material properties -------------------------------------------------------------------------
