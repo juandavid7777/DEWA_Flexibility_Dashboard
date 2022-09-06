@@ -107,16 +107,6 @@ Tg=20
 data = download_data_csv('environment_data.csv') 
 data = data.set_index("date", drop = False)
 
-#Estimates solar temperatures
-# solar_vars = ['Qsolar_window', 'Qsolar_bw', 'Qsolar_roof', 'Qsolar_sw1', 'Qsolar_sw2',]
-
-# for var in solar_vars:
-    
-#     suffix = var.split("_")
-#     var_name = "Tsol_" + suffix[1]
-#     data[var_name] = data["To"] + (0.3* data[var]/10)
-
-
 #slices selected dates data for a n day simulation ---------------------------------------------
 date_day_str = date_day_select.strftime("%Y-%m-%d")
 date_day = date_day_select #datetime.strptime(date_day_str,'%Y-%m-%d')
