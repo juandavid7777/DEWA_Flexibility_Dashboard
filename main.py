@@ -12,7 +12,10 @@ from datetime import datetime, timedelta, time
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-# Use inputs ---------------------------------------------------------------------------------
+#Sidebar
+st.sidebar.image("gears.png")
+
+    # Use inputs ---------------------------------------------------------------------------------
 sp = st.sidebar.slider(
      'Baseline setpoint',
      15, 35, 24)
@@ -224,6 +227,15 @@ fig.add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig.update_yaxes(range=[0, 40], secondary_y = True)
+
+# Setting up page
+
+#Image
+str.image("bitcoin.jpg")
+
+    #Title
+str.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Bitcoin logarithmic investment projections</b>', unsafe_allow_html=True)
+
 
 st.plotly_chart(fig)
 
