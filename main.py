@@ -222,6 +222,14 @@ fig.add_trace(go.Scatter(
     line = dict(width = 1.0, color = "orange")
     ),secondary_y=True)
 
+fig.update_layout(
+    title="Model results",
+    xaxis_title="Time",
+    yaxis_title="Cooling load (W)",
+    legend_title="Variables",
+    )
+
+fig.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig.update_yaxes(range=[0, 40], secondary_y = True)
 
 # Setting up page
