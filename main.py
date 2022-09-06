@@ -112,7 +112,7 @@ for var in solar_vars:
 
 
 #slices selected dates data for a n day simulation ---------------------------------------------
-date_day_str = date_day_select.strftime()
+date_day_str = date_day_select.strftime("%Y-%m-%d")
 date_day = date_day_select #datetime.strptime(date_day_str,'%Y-%m-%d')
 
 d_5 = timedelta(days = 5)
