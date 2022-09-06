@@ -1,7 +1,10 @@
+from collections import defaultdict
+import pandas as pd
+
 
 def simulate(data,param, x0, tsp = "tsp"):
 
-    from collections import defaultdict
+    
     stats = defaultdict(list)
 
     #Gets model parameters
