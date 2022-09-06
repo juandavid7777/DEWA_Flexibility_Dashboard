@@ -1,8 +1,30 @@
-def simulate(data,x0,tsp = "tsp2"):
+from main import R1sw1
+
+
+def simulate(data,param, x0,tsp = "tsp2"):
 
     from collections import defaultdict
-
     stats = defaultdict(list)
+
+    #Gets model parameters
+    Kp = param["Kp"]
+    qmax = param["qmax"]
+    Delta_t = param["Delta_t"]
+    C_air = param["C_air"]
+    Cw = param["Cw"]
+    Cf1 = param["Cf1"]
+    Cf2 = param["Cf2"]
+    R12 = param["R12"]
+    R10 = param["R10"]
+    R1sw1 = param["R1sw1"]
+    R1win = param["R1win"]
+    r0w = param["r0w"]
+    Rwcon = param["Rwcon"]
+    r0f = param["r0f"]
+    rwin = param["rwin"]
+    R2f1 = param["R2f1 "]
+    Rf1f2 = param["Rf1f2"]
+    Rf2g = param["Rf2g"]
 
     #Runs simulation
     for i in range(1,len(data)+1):
@@ -88,3 +110,5 @@ def simulate(data,x0,tsp = "tsp2"):
     result = pd.DataFrame().from_dict(stats)
     
     return result
+
+    

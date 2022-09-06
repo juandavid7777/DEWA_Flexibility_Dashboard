@@ -12,7 +12,7 @@ from datetime import datetime,timedelta
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-# Use inputs ---------------------------------
+# Use inputs ---------------------------------------------------------------------------------
 
 fstp = st.slider(
      'Select a flexible set point',
@@ -20,9 +20,7 @@ fstp = st.slider(
 st.write('Values:', fstp)
 
 
-
-
-# Material properties --------------------------
+# Material properties -------------------------------------------------------------------------
 Lf=0.1
 Ccon=800
 Kcon=1.7
@@ -34,7 +32,7 @@ Af=10
 Cw=Ccon*ro*Af*Lw
 Rwcon=Lw/(Kcon*Af)
 
-# Model properties ----------------------------
+# Model properties -----------------------------------------------------------------------------
 
 #air properties
 Cp_air=1000
@@ -85,7 +83,7 @@ Kp=1000
 #Ground temperature
 Tg=20
 
-#Loads environmental data variables ---------------------------
+#Loads environmental data variables -------------------------------------------------------------
 
 #Import time series data variables (U)
 data = pd.read_csv('Data.csv', parse_dates = ["date"], dayfirst  =True)
@@ -128,19 +126,24 @@ data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"
 data_sim["tsp2"].plot() #.loc[date_day_str]
 
 # Simulation
-#Set initialconditions
+    #Gets parameters
+param_names = ["Kp", "qmax", "Delta_t", "C_air", "Cw", "Cf1", "Cf2", "R12", "R10", "R1sw1", "R1win", "r0w", "Rwcon", "r0f", "rwin", "R2f1", "Rf1f2", "Rf2g" ]
+param_values = [Kp, qmax, Delta_t, C_air, Cw, Cf1, Cf2, R12, R10, R1sw1, R1win, r0w, Rwcon, r0f, rwin, R2f1, Rf1f2, Rf2g ]
+params= dict(zip(param_names, param_values))
+
+    #Set initialconditions
 state_vars = ["t1", "tceil", "t2", "tf1", "tf2", "tsw1", "tsw2", "tbw", "twin", "qaux", "error", "pi"]
 initial_values = [24,24,24,24,24,24,24,24,24,0,0,0]
 x0 = dict(zip(state_vars, initial_values))
 
 #Simulate baseline data
-result = simulate(data_sim, x0, tsp = "tsp")
+result = simulate(data_sim, params, x0, tsp = "tsp")
 data_sim = data_sim.reset_index(drop = True)
 df_bs = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
 
 #Simulate baseline data
-result = simulate(data_sim, x0, tsp = "tsp2")
+result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
