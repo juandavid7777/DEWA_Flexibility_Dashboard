@@ -230,12 +230,11 @@ fig.update_yaxes(range=[0, 40], secondary_y = True)
 
 # Setting up page
 
-#Image
-st.image("Box_model.jpg")
-
     #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility simulation for low order model in Dubai</b>', unsafe_allow_html=True)
 
+    #Image
+st.image("Box_model.jpg")
 
 st.plotly_chart(fig)
 
