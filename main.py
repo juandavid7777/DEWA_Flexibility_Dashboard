@@ -231,10 +231,10 @@ fig.update_yaxes(range=[0, 40], secondary_y = True)
 # Setting up page
 
 #Image
-str.image("bitcoin.jpg")
+st.image("bitcoin.jpg")
 
     #Title
-str.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Bitcoin logarithmic investment projections</b>', unsafe_allow_html=True)
+st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Bitcoin logarithmic investment projections</b>', unsafe_allow_html=True)
 
 
 st.plotly_chart(fig)
