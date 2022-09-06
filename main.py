@@ -26,9 +26,10 @@ st.write('Flexible setpoint (C):', fstp)
 
 date_day_select = st.sidebar.date_input(
      "Analysis date",
-     value = datetime.datetime.date(2019, 7, 6),
+     value = datetime.date(2019, 7, 6),
      min_value = datetime.date(2019, 1, 6),
-     max_value = datetime.date(2019, 12, 30))
+     max_value = datetime.date(2019, 12, 30)
+     )
 st.write('Date:', date_day_select)
 
 
