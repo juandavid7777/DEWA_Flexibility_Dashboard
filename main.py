@@ -19,13 +19,10 @@ st.sidebar.image("gears.png")
 sp = st.sidebar.slider(
      'Baseline setpoint',
      15, 35, 24)
-st.write('Baseline setpoint (C):', sp)
-
 
 fstp = st.sidebar.slider(
      'Flexible setpoint',
      15, 35, 24)
-st.write('Flexible setpoint (C):', fstp)
 
 date_day_select = st.sidebar.date_input(
      "Analysis date",
@@ -33,7 +30,6 @@ date_day_select = st.sidebar.date_input(
      min_value = datetime(2019, 1, 6),
      max_value = datetime(2019, 12, 30)
      )
-st.write('Date:', date_day_select)
 
 
 dr_time = st.sidebar.slider(
@@ -236,5 +232,18 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analys
     #Image
 st.image("Box_model.jpg")
 
+#Creates triple column
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.write('Analysis Date:', date_day_select)
+
+with col2:
+    st.write('Baseline setpoint (C):', sp)
+    
+with col3:
+    st.write('Flexible setpoint (C):', fstp)
+
 st.plotly_chart(fig)
+
 
