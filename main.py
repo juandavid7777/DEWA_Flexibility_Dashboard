@@ -17,7 +17,7 @@ from plotly.subplots import make_subplots
 fstp = st.slider(
      'Select a flexible set point',
      15, 35, 18)
-st.write('Values:', fstp)
+st.write('Flexible setpoint (C):', fstp)
 
 
 # Material properties -------------------------------------------------------------------------
@@ -111,7 +111,7 @@ date_1dafter = date_day+d_p1
 data_sim = data.loc[date_5dbefore:date_1dafter]
 
 #Set point definitions
-tsp =24
+tsp = 24
 data_sim["tsp"] = tsp
 data_sim["tsp2"] = tsp
 
