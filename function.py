@@ -1,5 +1,7 @@
 def simulate(data,x0,tsp = "tsp2"):
 
+    from collections import defaultdict
+
     stats = defaultdict(list)
 
     #Runs simulation
