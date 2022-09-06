@@ -1,7 +1,5 @@
-from main import R1sw1
 
-
-def simulate(data,param, x0,tsp = "tsp2"):
+def simulate(data,param, x0, tsp = "tsp"):
 
     from collections import defaultdict
     stats = defaultdict(list)
