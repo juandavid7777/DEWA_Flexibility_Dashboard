@@ -299,6 +299,7 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analys
 
     #Image
 st.image("Box_model.jpg")
+st.plotly_chart(fig_dr_year)
 
 #Creates triple column
 col1, col2, col3 = st.columns(3)
@@ -317,7 +318,7 @@ with col3:
     st.write('Flexible event efficiency (%):', round(eff*100, 0))
 
 st.plotly_chart(fig_dr_day)
-st.plotly_chart(fig_dr_year)
+
 
 
 
