@@ -18,11 +18,11 @@ st.sidebar.image("gears.png")
     # Use inputs ---------------------------------------------------------------------------------
 sp = st.sidebar.slider(
      'Baseline setpoint',
-     15, 35, 24)
+     10, 35, 24)
 
 fstp = st.sidebar.slider(
      'Flexible setpoint',
-     15, 35, 24)
+     10, 35, 24)
 
 date_day_select = st.sidebar.date_input(
      "Analysis date",
@@ -222,7 +222,7 @@ fig_dr_day.add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig_dr_day.update_layout(
-    title="Model results",
+    title="Selection model results",
     xaxis_title="Time",
     yaxis_title="Cooling load (W)",
     legend_title="Variables",
@@ -254,12 +254,12 @@ fig_dr_year.add_trace(go.Scatter(
     ),secondary_y=False)
 
 fig_dr_year.add_hline(y=sp,  line_width=1, line_dash="dash", line_color="blue")
-fig_dr_year.add_hline(y=fstp,  line_width=2, line_dash="dash", line_color="blue")
+#fig_dr_year.add_hline(y=fstp,  line_width=2, line_dash="dash", line_color="blue")
 fig_dr_year.add_vline(x=date_day_str,  line_width=1, line_dash="dash", line_color="red")
 fig_dr_year.update_traces(marker_size=10)
 
 fig_dr_year.update_layout(
-    title="Yearly overview",
+    title="Selection yearly overview",
     xaxis_title="Time",
     yaxis_title="Ambient Temperature (C)",
     legend_title="Variables",
