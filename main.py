@@ -319,8 +319,8 @@ with col1:
     
 with col2:
     st.write('CADR (kWh):', round(down_flex,2))
-    st.write('After flexible event downward flexibility (kWh):', round(down_flex_after,2))
-    st.write('Flexible event efficiency (%):', round(eff*100, 0))
+    st.write('Energy shift with ADR(kWh):', round(down_flex_after,2))
+    st.write('Flexible event efficiency (%):', str(round(eff*100, 0))+"%")
 
 
 
