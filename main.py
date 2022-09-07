@@ -231,7 +231,7 @@ fig_dr_day.update_layout(
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
 
-    #Second plot
+#Second plot
 fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_p = data
@@ -243,7 +243,27 @@ fig_dr_year.add_trace(go.Scatter(
     mode = 'lines',
     name = "Ambient Temperature",
     line = dict(width = 1.0, color = "orange")
-    ),secondary_y=True)
+    ),secondary_y=False)
+
+fig_dr_year.add_trace(go.Scatter(
+    x=[date_day_str],
+    y=[sp],
+    mode = 'markers',
+    name = "Selection",
+    line = dict(width = 1.0, color = "red")
+    ),secondary_y=False)
+
+fig_dr_year.add_hline(y=sp,  line_width=1, line_dash="dash", line_color="blue")
+fig_dr_year.add_hline(y=fstp,  line_width=2, line_dash="dash", line_color="blue")
+fig_dr_year.add_vline(x=date_day_str,  line_width=1, line_dash="dash", line_color="red")
+fig_dr_year.update_traces(marker_size=10)
+
+fig_dr_year.update_layout(
+    title="Yearly overview",
+    xaxis_title="Time",
+    yaxis_title="Ambient Temperature (C)",
+    legend_title="Variables",
+    )
 
 
 #Estimates KPIs
