@@ -314,13 +314,13 @@ st.plotly_chart(fig_dr_day)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,2))
-    st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,2))
+    st.write('Cooling demand baseline day (kWh): ', round(cooling_total_bs,2))
+    st.write('Cooling demand flexible day (kWh): ', round(cooling_total_dr,2))
     
 with col2:
     st.write('CADR (kWh):', round(down_flex,2))
-    st.write('Energy shift with ADR(kWh):', round(down_flex_after,2))
-    st.write('Flexible event efficiency (%):', str(round(eff*100, 0))+"%")
+    st.write('Energy shift after ADR(kWh):', round(down_flex_after,2))
+    st.write('Flexible event ratio (%): ', str(round(eff*100, 0))+" %")
 
 
 
