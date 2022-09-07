@@ -36,6 +36,8 @@ dr_time = st.sidebar.slider(
      "Demand response event time:",
      value=(time(7, 00), time(13, 00)))
 
+setpoint_bool = st.sidebar.checkbox('Flexible event for prev. days')
+
 
 # Material properties -------------------------------------------------------------------------
 Lf=0.1
@@ -127,8 +129,12 @@ hour_s = dr_time[0]    #hour start
 hour_e = dr_time[1]   #hour end
 
 #Applies alternative setpoint
-data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].time() >= hour_s) & (x["date"].time() < hour_e)) else tsp, axis = 1)
-data_sim["tsp2"].plot() #.loc[date_day_str]
+if setpoint_bool == False:
+    data_sim.loc[date_day_str]["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].time() >= hour_s) & (x["date"].time() < hour_e)) else tsp, axis = 1)
+
+else:
+    data_sim["tsp2"] = data_sim.apply(lambda x: tsp2 if ((x["date"].time() >= hour_s) & (x["date"].time() < hour_e)) else tsp, axis = 1)
+
 
 # Simulation ----------------------------------------------------------------------------------
     #Gets parameters
