@@ -273,13 +273,13 @@ with col1:
     st.write('Baseline setpoint (C):', sp)
     st.write('Flexible setpoint (C):', fstp)
 with col2:
-    st.write('Cooling demand baseline day (kWh):', cooling_total_bs)
-    st.write('Cooling demand flexible day (kwh):', cooling_total_dr)
+    st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,0))
+    st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,0))
     
 with col3:
-    st.write('Flexible event downward flexibility (kWh/m^2):', down_flex)
-    st.write('After lexible event downward flexibility (kWh/m^2):', down_flex_after)
-    st.write('Flexible event efficiency (%):', eff)
+    st.write('Flexible event downward flexibility (kWh/m^2):', round(down_flex,0))
+    st.write('After lexible event downward flexibility (kWh/m^2):', round(down_flex_after,0))
+    st.write('Flexible event efficiency (%):', round(eff*100, 0))
 
 st.plotly_chart(fig)
 
