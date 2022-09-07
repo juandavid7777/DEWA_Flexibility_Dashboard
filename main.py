@@ -178,7 +178,8 @@ fig_dr_day.add_trace(go.Scatter(
     y=df_dr["qaux"],
     mode = 'lines',
     name = "Cooling flexible",
-    line = dict(width = 2.0, color = "red", dash = "dash")
+    line = dict(width = 2.0, color = "red", dash = "dash"),
+    fill='tonexty'
     ),secondary_y=False)
 
 #Adds metric
