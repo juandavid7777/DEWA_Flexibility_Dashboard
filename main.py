@@ -245,7 +245,6 @@ df_sliced = df_dr.loc[hour_s:hour_e]
 cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
 
 down_flex = (cooling_drevent_dr - cooling_drevent_bs)/10
-down_flex
 
     # After ADR event
 df_sliced = df_bs.loc[hour_e:hour_day_end]
@@ -254,7 +253,6 @@ df_sliced = df_dr.loc[hour_e:hour_day_end]
 cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
 
 down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)/10
-down_flex_after
 
     # Efficiency
 eff = round(down_flex_after/down_flex*100, 0)
@@ -280,7 +278,7 @@ with col2:
     
 with col3:
     st.write('Flexible event downward flexibility (kWh/m^2):', down_flex)
-    st.write('After lexible event downward flexibility (kWh/m^2):', down_flex)
+    st.write('After lexible event downward flexibility (kWh/m^2):', down_flex_after)
     st.write('Flexible event efficiency (%):', eff)
 
 st.plotly_chart(fig)
