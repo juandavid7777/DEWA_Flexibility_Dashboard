@@ -286,7 +286,7 @@ cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/n
 df_sliced = df_dr.loc[hour_s:hour_e]
 cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
 
-down_flex = (cooling_drevent_dr - cooling_drevent_bs)/10
+down_flex = (cooling_drevent_dr - cooling_drevent_bs)
 
     # After ADR event
 df_sliced = df_bs.loc[hour_e:hour_day_end]
@@ -294,7 +294,7 @@ cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/n
 df_sliced = df_dr.loc[hour_e:hour_day_end]
 cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
 
-down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)/10
+down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
     # Efficiency
 eff = down_flex_after/down_flex
@@ -318,8 +318,8 @@ with col1:
     st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,2))
     
 with col2:
-    st.write('CADR (kWh/m^2):', round(down_flex,2))
-    st.write('After flexible event downward flexibility (kWh/m^2):', round(down_flex_after,2))
+    st.write('CADR (kWh):', round(down_flex,2))
+    st.write('After flexible event downward flexibility (kWh):', round(down_flex_after,2))
     st.write('Flexible event efficiency (%):', round(eff*100, 0))
 
 
