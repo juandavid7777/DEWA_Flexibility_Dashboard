@@ -238,7 +238,7 @@ fig_dr_day.update_layout(
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
 
-#Second plot
+#Second plot-----------------------------------------------------------
 fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_p = data
@@ -256,7 +256,7 @@ fig_dr_year.add_trace(go.Scatter(
     x=[date_day_str],
     y=[sp],
     mode = 'markers',
-    name = "Selection",
+    name = "Setpoint selection",
     line = dict(width = 1.0, color = "red")
     ),secondary_y=False)
 
@@ -311,17 +311,13 @@ st.plotly_chart(fig_dr_day)
 
 
 #Creates triple column
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(3)
 
 with col1:
-    st.write('Analysis Date:', date_day_select)
-    st.write('Baseline setpoint (C):', sp)
-    st.write('Flexible setpoint (C):', fstp)
-with col2:
     st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,2))
     st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,2))
     
-with col3:
+with col2:
     st.write('Flexible event downward flexibility (kWh/m^2):', round(down_flex,2))
     st.write('After flexible event downward flexibility (kWh/m^2):', round(down_flex_after,2))
     st.write('Flexible event efficiency (%):', round(eff*100, 0))
