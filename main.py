@@ -152,13 +152,13 @@ data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
 #Plotting -------------------------------------------------------------------------------------   
-fig = make_subplots(specs=[[{"secondary_y": True}]])
+fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_bs = df_bs.loc[date_day_str]
 df_dr = df_dr.loc[date_day_str]
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["qaux"],
     mode = 'lines',
@@ -167,7 +167,7 @@ fig.add_trace(go.Scatter(
     ),secondary_y=False)
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["qaux"],
     mode = 'lines',
@@ -176,7 +176,7 @@ fig.add_trace(go.Scatter(
     ),secondary_y=False)
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["tsp"],
     mode = 'lines',
@@ -185,7 +185,7 @@ fig.add_trace(go.Scatter(
     ),secondary_y=True)
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["tsp2"],
     mode = 'lines',
@@ -194,7 +194,7 @@ fig.add_trace(go.Scatter(
     ),secondary_y=True)
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["t1"],
     mode = 'lines',
@@ -203,7 +203,7 @@ fig.add_trace(go.Scatter(
     ),secondary_y=True)
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["t1"],
     mode = 'lines',
@@ -213,7 +213,7 @@ fig.add_trace(go.Scatter(
 
 
 #Adds metric
-fig.add_trace(go.Scatter(
+fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["To"],
     mode = 'lines',
@@ -221,15 +221,30 @@ fig.add_trace(go.Scatter(
     line = dict(width = 1.0, color = "orange")
     ),secondary_y=True)
 
-fig.update_layout(
+fig_dr_day.update_layout(
     title="Model results",
     xaxis_title="Time",
     yaxis_title="Cooling load (W)",
     legend_title="Variables",
     )
 
-fig.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig.update_yaxes(range=[0, 40], secondary_y = True)
+fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
+
+    #Second plot
+fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
+
+df_p = data
+
+#Adds metric
+fig_dr_year.add_trace(go.Scatter(
+    x=df_p['date'],
+    y=df_p["To"],
+    mode = 'lines',
+    name = "Ambient Temperature",
+    line = dict(width = 1.0, color = "orange")
+    ),secondary_y=True)
+
 
 #Estimates KPIs
     # Total energy used during the day
@@ -281,6 +296,8 @@ with col3:
     st.write('After flexible event downward flexibility (kWh/m^2):', round(down_flex_after,2))
     st.write('Flexible event efficiency (%):', round(eff*100, 0))
 
-st.plotly_chart(fig)
+st.plotly_chart(fig_dr_day)
+st.plotly_chart(fig_dr_year)
+
 
 
