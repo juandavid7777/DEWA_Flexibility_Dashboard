@@ -311,7 +311,7 @@ st.plotly_chart(fig_dr_day)
 
 
 #Creates triple column
-col1, col2 = st.columns(3)
+col1, col2 = st.columns(2)
 
 with col1:
     st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,2))
