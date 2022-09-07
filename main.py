@@ -50,7 +50,6 @@ Cw=Ccon*ro*Af*Lw
 Rwcon=Lw/(Kcon*Af)
 
 # Model properties -----------------------------------------------------------------------------
-
 #air properties
 Cp_air=1000
 ro_air=1.2
@@ -232,6 +231,34 @@ fig.update_layout(
 fig.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig.update_yaxes(range=[0, 40], secondary_y = True)
 
+#Estimates KPIs
+    # Total energy used during the day
+cooling_total_bs = np.trapz(df_bs['qaux'], dx=np.diff(df_bs['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_total_dr = np.trapz(df_dr['qaux'], dx=np.diff(df_dr['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+    # ADR event
+hour_day_end = time(23,59)
+
+df_sliced = df_bs.loc[hour_s:hour_e]
+cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+df_sliced = df_dr.loc[hour_s:hour_e]
+cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+down_flex = (cooling_drevent_dr - cooling_drevent_bs)/10
+down_flex
+
+    # After ADR event
+df_sliced = df_bs.loc[hour_e:hour_day_end]
+cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+df_sliced = df_dr.loc[hour_e:hour_day_end]
+cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)/10
+down_flex_after
+
+    # Efficiency
+eff = round(down_flex_after/down_flex*100, 0)
+
 # Setting up page
 
     #Title
@@ -245,12 +272,16 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     st.write('Analysis Date:', date_day_select)
-
-with col2:
     st.write('Baseline setpoint (C):', sp)
+    st.write('Flexible setpoint (C):', fstp)
+with col2:
+    st.write('Cooling demand baseline day (kWh):', cooling_total_bs)
+    st.write('Cooling demand flexible day (kwh):', cooling_total_dr)
     
 with col3:
-    st.write('Flexible setpoint (C):', fstp)
+    st.write('Flexible event downward flexibility (kWh/m^2):', down_flex)
+    st.write('After lexible event downward flexibility (kWh/m^2):', down_flex)
+    st.write('Flexible event efficiency (%):', eff)
 
 st.plotly_chart(fig)
 
