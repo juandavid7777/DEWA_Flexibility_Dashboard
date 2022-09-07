@@ -255,7 +255,7 @@ cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/n
 down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)/10
 
     # Efficiency
-eff = round(down_flex_after/down_flex*100, 0)
+eff = down_flex_after/down_flex
 
 # Setting up page
 
@@ -273,8 +273,8 @@ with col1:
     st.write('Baseline setpoint (C):', sp)
     st.write('Flexible setpoint (C):', fstp)
 with col2:
-    st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,0))
-    st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,0))
+    st.write('Cooling demand baseline day (kWh):', round(cooling_total_bs,2))
+    st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,2))
     
 with col3:
     st.write('Flexible event downward flexibility (kWh/m^2):', round(down_flex,0))
