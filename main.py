@@ -318,7 +318,7 @@ with col1:
     st.write('Cooling demand flexible day (kWh):', round(cooling_total_dr,2))
     
 with col2:
-    st.write('Flexible event downward flexibility (kWh/m^2):', round(down_flex,2))
+    st.write('CADR (kWh/m^2):', round(down_flex,2))
     st.write('After flexible event downward flexibility (kWh/m^2):', round(down_flex_after,2))
     st.write('Flexible event efficiency (%):', round(eff*100, 0))
 
