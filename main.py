@@ -312,7 +312,7 @@ fig_gauge = go.Figure(go.Indicator(
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
         'shape': "angular",
-        'axis': {'range': [None, 15]},
+        'axis': {'range': [None, dr_cons +2]},
         'threshold': {
             'line': {'color': "red", 'width': 2},
             'thickness': 0.75,
