@@ -272,25 +272,6 @@ fig_dr_year.update_layout(
     legend_title="Variables",
     )
 
-#Third plot----------------------------------------------------------
-fig_gauge = go.Figure(go.Indicator(
-    mode = "number+gauge+delta", value = dr_cons,
-    domain = {'x': [0.1, 1], 'y': [0, 1]},
-    title = {'text' :"<b>Cooling (kWh)</b>"},
-    delta = {'reference': bs_cons, "relative" : True},
-    gauge = {
-        'shape': "bullet",
-        'axis': {'range': [None, 15]},
-        'threshold': {
-            'line': {'color': "red", 'width': 2},
-            'thickness': 0.75,
-            'value': bs_cons},
-        'steps': [
-            {'range': [0, bs_cons], 'color': "lightgray"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
-
-fig_gauge.update_layout(height = 250)
-
 
 #Estimates KPIs
     # Total energy used during the day
@@ -317,6 +298,30 @@ down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
     # Efficiency
 eff = down_flex_after/down_flex
+
+
+#Third plot----------------------------------------------------------
+
+bs_cons = cooling_total_bs
+dr_cons = cooling_total_dr
+
+fig_gauge = go.Figure(go.Indicator(
+    mode = "number+gauge+delta", value = dr_cons,
+    domain = {'x': [0.1, 1], 'y': [0, 1]},
+    title = {'text' :"<b>Cooling (kWh)</b>"},
+    delta = {'reference': bs_cons, "relative" : True},
+    gauge = {
+        'shape': "bullet",
+        'axis': {'range': [None, 15]},
+        'threshold': {
+            'line': {'color': "red", 'width': 2},
+            'thickness': 0.75,
+            'value': bs_cons},
+        'steps': [
+            {'range': [0, bs_cons], 'color': "lightgray"},
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
+
+fig_gauge.update_layout(height = 250)
 
 # Setting up page
 
