@@ -272,6 +272,25 @@ fig_dr_year.update_layout(
     legend_title="Variables",
     )
 
+#Third plot----------------------------------------------------------
+fig_gauge = go.Figure(go.Indicator(
+    mode = "number+gauge+delta", value = dr_cons,
+    domain = {'x': [0.1, 1], 'y': [0, 1]},
+    title = {'text' :"<b>Cooling (kWh)</b>"},
+    delta = {'reference': bs_cons, "relative" : True},
+    gauge = {
+        'shape': "bullet",
+        'axis': {'range': [None, 15]},
+        'threshold': {
+            'line': {'color': "red", 'width': 2},
+            'thickness': 0.75,
+            'value': bs_cons},
+        'steps': [
+            {'range': [0, bs_cons], 'color': "lightgray"},
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
+
+fig_gauge.update_layout(height = 250)
+
 
 #Estimates KPIs
     # Total energy used during the day
@@ -314,8 +333,7 @@ st.plotly_chart(fig_dr_day)
 col1, col2 = st.columns(2)
 
 with col1:
-    st.write('Cooling demand baseline day (kWh): ', round(cooling_total_bs,2))
-    st.write('Cooling demand flexible day (kWh): ', round(cooling_total_dr,2))
+    st.plotly_chart(fig_gauge)
     
 with col2:
     st.write('CADR (kWh):', round(down_flex,2))
