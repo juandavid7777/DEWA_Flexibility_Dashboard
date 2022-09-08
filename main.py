@@ -312,7 +312,7 @@ fig_gauge = go.Figure(go.Indicator(
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
         'shape': "gauge",
-        'axis': {'range': [None, None]},
+        # 'axis': {'range': [None, None]},
         'threshold': {
             'line': {'color': "red", 'width': 2},
             'thickness': 0.75,
@@ -321,7 +321,7 @@ fig_gauge = go.Figure(go.Indicator(
             {'range': [0, bs_cons], 'color': "lightgray"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
 
-fig_gauge.update_layout(height = 250)
+# fig_gauge.update_layout(height = 250)
 
 # Setting up page
 
