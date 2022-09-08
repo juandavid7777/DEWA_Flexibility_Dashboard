@@ -311,8 +311,8 @@ fig_gauge = go.Figure(go.Indicator(
     title = {'text' :"<b>Cooling (kWh)</b>"},
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
-        'shape': "bullet",
-        'axis': {'range': [None, 15]},
+        'shape': "gauge",
+        'axis': {'range': [None, None]},
         'threshold': {
             'line': {'color': "red", 'width': 2},
             'thickness': 0.75,
