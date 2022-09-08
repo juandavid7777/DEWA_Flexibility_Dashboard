@@ -311,7 +311,7 @@ fig_gauge = go.Figure(go.Indicator(
     title = {'text' :"<b>Cooling (kWh)</b>"},
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
-        'shape': "bullet",
+        'shape': "angular",
         'axis': {'range': [None, 15]},
         'threshold': {
             'line': {'color': "red", 'width': 2},
@@ -321,7 +321,7 @@ fig_gauge = go.Figure(go.Indicator(
             {'range': [0, bs_cons], 'color': "lightgray"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
 
-# fig_gauge.update_layout(height = 250)
+fig_gauge.update_layout(height = 250)
 
 # Setting up page
 
