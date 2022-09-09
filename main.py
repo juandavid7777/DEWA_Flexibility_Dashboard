@@ -330,15 +330,15 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analys
 
     #Image
 st.image("Box_model.jpg")
-st.plotly_chart(fig_dr_year)
-st.plotly_chart(fig_dr_day)
+st.plotly_chart(fig_dr_year, use_container_width=True)
+st.plotly_chart(fig_dr_day, use_container_width=True)
 
 
 #Creates triple column
 col1, col2 = st.columns(2)
 
 
-col1.plotly_chart(fig_gauge)
+col1.plotly_chart(fig_gauge, use_container_width=True)
     
 with col2:
     st.write('CADR (kWh):', round(down_flex,2))
