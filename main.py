@@ -236,7 +236,7 @@ fig_dr_day.update_layout(
     )
 
 CADR_x = (datetime.combine(date_day_select,hour_e))
-fig_dr_day.add_annotation(x=CADR_x, y=1000,
+fig_dr_day.add_annotation(x=CADR_x, y=df_dr["qaux"].max(),
             text="CADR",
             showarrow=True,
             yshift=20)
