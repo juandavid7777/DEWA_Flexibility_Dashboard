@@ -337,8 +337,8 @@ st.plotly_chart(fig_dr_day)
 #Creates triple column
 col1, col2 = st.columns(2)
 
-with col1:
-    st.plotly_chart(fig_gauge)
+
+col1.plotly_chart(fig_gauge)
     
 with col2:
     st.write('CADR (kWh):', round(down_flex,2))
