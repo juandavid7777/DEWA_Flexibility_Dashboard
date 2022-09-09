@@ -235,6 +235,14 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
+CADR_x = (datetime.combine(date_day_select,hour_e))
+fig_dr_day.add_annotation(x=CADR_x, y=1000,
+            text="CADR",
+            showarrow=True,
+            yshift=20)
+
+
+
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
 
