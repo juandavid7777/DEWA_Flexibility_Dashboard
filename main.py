@@ -290,7 +290,7 @@ if sp != fstp:
 
     y2 = df_bs["qaux"].max()
     y1 = df_dr["qaux"].min()
-    ye = (y2-y1)*0.2+y1
+    ye = (y2-y1)*0.85+y1
 
     energy_y = ye
     fig_dr_day.add_annotation(x=energy_x, y=energy_y,
