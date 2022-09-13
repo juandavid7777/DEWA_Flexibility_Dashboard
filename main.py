@@ -276,7 +276,7 @@ ya = (y2-y1)*0.2+y1
 
 CADR_y = ya
 fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-            text="CADR = " + str(down_flex) + " kWh",
+            text="CADR = " + str(round(down_flex,2)) + " kWh",
             showarrow=False,
             yshift=0)
 
@@ -292,7 +292,7 @@ ye = (y2-y1)*0.2+y1
 
 energy_y = ye
 fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-            text="Energy shift = " + str(down_flex_after) + " kWh",
+            text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
             showarrow=False,
             yshift=0)
 
