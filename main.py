@@ -298,6 +298,15 @@ if sp != fstp:
                 showarrow=False,
                 yshift=0)
 
+        #Annotation Ratio
+    ratio_x = energy_x
+    ratio_y = CADR_y
+    
+    fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
+                text="Energy shift/CADR ratio =" + str(round(eff,4)*100) + "%",
+                showarrow=False,
+                yshift=0)
+
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
 
