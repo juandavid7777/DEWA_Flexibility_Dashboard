@@ -235,7 +235,7 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-#Annotation
+#Annotation CADR
 x1 = datetime.combine(date_day_select,hour_s).timestamp()
 x2 = datetime.combine(date_day_select,hour_e).timestamp()
 xa = (x2-x1)/2+x1
@@ -247,7 +247,23 @@ ya = (y2-y1)*0.2+y1
 
 CADR_y = ya
 fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-            text="CADR",
+            text="CADR = " + str(0.5) + " kWh",
+            showarrow=False,
+            yshift=0)
+
+#Annotation Energy unloaded
+x1 = datetime.combine(date_day_select,hour_e).timestamp()
+x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
+xe = (x2-x1)/2+x1
+energy_x = datetime.fromtimestamp(xe)
+
+y2 = df_bs["qaux"].max()
+y1 = df_dr["qaux"].min()
+ye = (y2-y1)*0.2+y1
+
+energy_y = ye
+fig_dr_day.add_annotation(x=energy_x, y=energy_y,
+            text="Energy shift =" + str(0.5) + " kWh",
             showarrow=False,
             yshift=0)
 
