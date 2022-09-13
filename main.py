@@ -157,13 +157,42 @@ result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
+
+#Estimates KPIs
+    # Total energy used during the day
+cooling_total_bs = np.trapz(df_bs['qaux'], dx=np.diff(df_bs['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_total_dr = np.trapz(df_dr['qaux'], dx=np.diff(df_dr['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+    # ADR event
+hour_day_end = time(23,59)
+
+df_sliced = df_bs.loc[hour_s:hour_e]
+cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+df_sliced = df_dr.loc[hour_s:hour_e]
+cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+down_flex = (cooling_drevent_dr - cooling_drevent_bs)
+
+    # After ADR event
+df_sliced = df_bs.loc[hour_e:hour_day_end]
+cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+df_sliced = df_dr.loc[hour_e:hour_day_end]
+cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+
+down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
+
+    # Efficiency
+eff = down_flex_after/down_flex
+
+
+
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_bs = df_bs.loc[date_day_str]
 df_dr = df_dr.loc[date_day_str]
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["qaux"],
@@ -172,7 +201,7 @@ fig_dr_day.add_trace(go.Scatter(
     line = dict(width = 1.0, color = "red", dash = "solid")
     ),secondary_y=False)
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["qaux"],
@@ -182,7 +211,7 @@ fig_dr_day.add_trace(go.Scatter(
     fill='tonexty'
     ),secondary_y=False)
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["tsp"],
@@ -191,7 +220,7 @@ fig_dr_day.add_trace(go.Scatter(
     line = dict(width = 1.0, color = "blue", dash='solid')
     ),secondary_y=True)
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["tsp2"],
@@ -200,7 +229,7 @@ fig_dr_day.add_trace(go.Scatter(
     line = dict(width = 2.0, color = "blue", dash='dash')
     ),secondary_y=True)
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["t1"],
@@ -209,7 +238,7 @@ fig_dr_day.add_trace(go.Scatter(
     line = dict(width = 1.0, color = "green", dash='solid')
     ),secondary_y=True)
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["t1"],
@@ -219,7 +248,7 @@ fig_dr_day.add_trace(go.Scatter(
     ),secondary_y=True)
 
 
-#Adds metric
+    #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["To"],
@@ -235,7 +264,7 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-#Annotation CADR
+    #Annotation CADR
 x1 = datetime.combine(date_day_select,hour_s).timestamp()
 x2 = datetime.combine(date_day_select,hour_e).timestamp()
 xa = (x2-x1)/2+x1
@@ -247,11 +276,11 @@ ya = (y2-y1)*0.2+y1
 
 CADR_y = ya
 fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-            text="CADR = " + str(0.5) + " kWh",
+            text="CADR = " + str(down_flex) + " kWh",
             showarrow=False,
             yshift=0)
 
-#Annotation Energy unloaded
+    #Annotation Energy unloaded
 x1 = datetime.combine(date_day_select,hour_e).timestamp()
 x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
 xe = (x2-x1)/2+x1
@@ -263,11 +292,9 @@ ye = (y2-y1)*0.2+y1
 
 energy_y = ye
 fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-            text="Energy shift =" + str(0.5) + " kWh",
+            text="Energy shift = " + str(down_flex_after) + " kWh",
             showarrow=False,
             yshift=0)
-
-
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
@@ -305,33 +332,6 @@ fig_dr_year.update_layout(
     yaxis_title="Ambient Temperature (C)",
     legend_title="Variables",
     )
-
-
-#Estimates KPIs
-    # Total energy used during the day
-cooling_total_bs = np.trapz(df_bs['qaux'], dx=np.diff(df_bs['date'])/np.timedelta64(1, 's'))/(1000*3600)
-cooling_total_dr = np.trapz(df_dr['qaux'], dx=np.diff(df_dr['date'])/np.timedelta64(1, 's'))/(1000*3600)
-
-    # ADR event
-hour_day_end = time(23,59)
-
-df_sliced = df_bs.loc[hour_s:hour_e]
-cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
-df_sliced = df_dr.loc[hour_s:hour_e]
-cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
-
-down_flex = (cooling_drevent_dr - cooling_drevent_bs)
-
-    # After ADR event
-df_sliced = df_bs.loc[hour_e:hour_day_end]
-cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
-df_sliced = df_dr.loc[hour_e:hour_day_end]
-cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
-
-down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
-
-    # Efficiency
-eff = down_flex_after/down_flex
 
 
 #Third plot----------------------------------------------------------
