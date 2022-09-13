@@ -303,7 +303,7 @@ if sp != fstp:
     ratio_y = CADR_y
     
     fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
-                text="Energy shift/CADR ratio =" + str(round(eff,4)*100) + "%",
+                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
                 showarrow=False,
                 yshift=0)
 
@@ -378,9 +378,6 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analys
 st.image("Box_model.jpg")
 st.plotly_chart(fig_dr_year, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
-
-
-#Creates triple column
 st.plotly_chart(fig_gauge, use_container_width=True)
 
 
