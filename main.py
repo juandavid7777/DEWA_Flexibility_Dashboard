@@ -350,14 +350,15 @@ fig_dr_year.update_layout(
 bs_cons = cooling_total_bs
 dr_cons = cooling_total_dr
 
+
 fig_gauge = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
     domain = {'x': [0.1, 1], 'y': [0, 1]},
-    title = {'text' :"<b>Cooling (kWh)</b>"},
-    delta = {'reference': bs_cons, "relative" : True},
+    title = {'text' :"<b>Cooling load</b><br><span style='color: darkgray; font-size:0.8em'>kWh</span>"},
+    delta = {'reference': (dr_cons - bs_cons), "relative" : False},
     gauge = {
-        'shape': "angular",
-        'axis': {'range': [None, dr_cons +2]},
+        'shape': "bullet",
+        'axis': {'range': [None, dr_cons]},
         'threshold': {
             'line': {'color': "red", 'width': 2},
             'thickness': 0.75,
@@ -380,15 +381,8 @@ st.plotly_chart(fig_dr_day, use_container_width=True)
 
 
 #Creates triple column
-col1, col2 = st.columns(2)
+st.plotly_chart(fig_gauge, use_container_width=True)
 
-
-col1.plotly_chart(fig_gauge, use_container_width=True)
-    
-with col2:
-    st.write('CADR (kWh):', round(down_flex,2))
-    st.write('Energy shift after ADR (kWh):', round(down_flex_after,2))
-    st.write('Flexible event ratio: ', str(round(eff*100, 0))+" %")
 
 
 
