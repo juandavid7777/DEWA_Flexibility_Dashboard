@@ -264,37 +264,39 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-    #Annotation CADR
-x1 = datetime.combine(date_day_select,hour_s).timestamp()
-x2 = datetime.combine(date_day_select,hour_e).timestamp()
-xa = (x2-x1)/2+x1
-CADR_x = datetime.fromtimestamp(xa)
+if sp != fstp:
 
-y2 = df_dr["qaux"].max()
-y1 = df_bs.loc[CADR_x]["qaux"]
-ya = (y2-y1)*0.2+y1
+        #Annotation CADR
+    x1 = datetime.combine(date_day_select,hour_s).timestamp()
+    x2 = datetime.combine(date_day_select,hour_e).timestamp()
+    xa = (x2-x1)/2+x1
+    CADR_x = datetime.fromtimestamp(xa)
 
-CADR_y = ya
-fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-            text="CADR = " + str(round(down_flex,2)) + " kWh",
-            showarrow=False,
-            yshift=0)
+    y2 = df_dr["qaux"].max()
+    y1 = df_bs.loc[CADR_x]["qaux"]
+    ya = (y2-y1)*0.2+y1
 
-    #Annotation Energy unloaded
-x1 = datetime.combine(date_day_select,hour_e).timestamp()
-x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
-xe = (x2-x1)/2+x1
-energy_x = datetime.fromtimestamp(xe)
+    CADR_y = ya
+    fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
+                text="CADR = " + str(round(down_flex,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
 
-y2 = df_bs["qaux"].max()
-y1 = df_dr["qaux"].min()
-ye = (y2-y1)*0.2+y1
+        #Annotation Energy unloaded
+    x1 = datetime.combine(date_day_select,hour_e).timestamp()
+    x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
+    xe = (x2-x1)/2+x1
+    energy_x = datetime.fromtimestamp(xe)
 
-energy_y = ye
-fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-            text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
-            showarrow=False,
-            yshift=0)
+    y2 = df_bs["qaux"].max()
+    y1 = df_dr["qaux"].min()
+    ye = (y2-y1)*0.2+y1
+
+    energy_y = ye
+    fig_dr_day.add_annotation(x=energy_x, y=energy_y,
+                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
