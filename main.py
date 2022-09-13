@@ -235,10 +235,21 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-CADR_x = (datetime.combine(date_day_select,hour_e))
-fig_dr_day.add_annotation(x=CADR_x, y=(df_dr["qaux"].max()-df_bs["qaux"].max())/2 + df_bs["qaux"].max(),
+#Annotation
+x1 = datetime.combine(date_day_select,hour_s).timestamp()
+x2 = datetime.combine(date_day_select,hour_e).timestamp()
+xa = (x2-x1)/2+x1
+
+y2 = df_dr["qaux"].max()
+y1 = df_bs.loc[CADR_x]["qaux"]
+ya = (y2-y1)*0.2+y1
+
+CADR_x = datetime.fromtimestamp(xa)
+CADR_y = ya
+fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
             text="CADR",
-            showarrow=False)
+            showarrow=False,
+            yshift=0)
 
 
 
