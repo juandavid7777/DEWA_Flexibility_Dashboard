@@ -5,7 +5,7 @@ from collections import defaultdict
 from matplotlib import pyplot as plt
 from scipy.integrate import cumtrapz as ctz
 import streamlit as st
-from function import simulate, download_data_csv
+from function import simulate, download_data_csv, roundTime
 
 from datetime import datetime, timedelta, time
 
@@ -273,7 +273,7 @@ if sp != fstp:
     CADR_x = datetime.fromtimestamp(xa)
 
     y2 = df_dr["qaux"].max()
-    y1 = df_bs.loc[CADR_x]["qaux"]
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
     ya = (y2-y1)*0.2+y1
 
     CADR_y = ya
