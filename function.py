@@ -121,6 +121,7 @@ def download_data_csv(url):
 
     return df
 
+@st.cache(suppress_st_warning=True)
 def roundTime(dt=None, roundTo=60):
     """ Round a datetime object to any time lapse in seconds
    dt : datetime.datetime object, default now.
@@ -132,4 +133,23 @@ def roundTime(dt=None, roundTo=60):
     seconds = (dt.replace(tzinfo=None) - dt.min).seconds
     rounding = (seconds+roundTo/2) // roundTo * roundTo
     return dt + timedelta(0,rounding-seconds,-dt.microsecond)
+
+@st.cache(suppress_st_warning=True)
+def chillerCOP(to, loading):
+    x = to
+    y = loading
     
+    C1 = -0.0000357229471371693
+    C2 = 4.29222732259951E-06
+    C3 = 6.36621617952334E-07
+    C4 = 0.00001150137344614
+    C5 = 0.00403204029230074
+    C6 = -0.001466186389158
+    C7 = -0.00126546932281316
+    C8 = -0.225123563022733
+    C9 = 0.114233895801329
+    C10 = 6.66022445845032
+    
+    COP = (C1*x**3) + (C2*y**3) + (C3*x**2*y) + (C4*x*y**2) + (C5*x**2) + (C6*y**2) + (C7*x*y) + (C8*x) + (C9*y) + C10
+    
+    return COP
