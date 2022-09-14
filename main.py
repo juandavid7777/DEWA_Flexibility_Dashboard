@@ -280,7 +280,8 @@ if sp != fstp:
 
     y2 = df_dr["qaux"].max()
     st.write(CADR_x)
-    # y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    st.write(y1)
     # ya = (y2-y1)*0.2+y1
 
     # CADR_y = ya
