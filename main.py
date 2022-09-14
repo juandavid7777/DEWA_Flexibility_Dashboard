@@ -157,13 +157,13 @@ result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
-#Estimates COP
-df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
-df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+# #Estimates COP
+# df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+# df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
 
-#Estimates electricity 
-df_dr["e_w"] = df_dr["qaux"]/df_dr["COP"]
-df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
+# #Estimates electricity 
+# df_dr["e_w"] = df_dr["qaux"]/df_dr["COP"]
+# df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 
 
 #Estimates KPIs
@@ -191,8 +191,6 @@ down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
     # Efficiency
 eff = down_flex_after/down_flex
-
-
 
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
@@ -272,48 +270,48 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-# if sp != fstp:
+if sp != fstp:
 
-#         #Annotation CADR
-#     x1 = datetime.combine(date_day_select,hour_s).timestamp()
-#     x2 = datetime.combine(date_day_select,hour_e).timestamp()
-#     xa = (x2-x1)/2+x1
-#     CADR_x = datetime.fromtimestamp(xa)
+        #Annotation CADR
+    x1 = datetime.combine(date_day_select,hour_s).timestamp()
+    x2 = datetime.combine(date_day_select,hour_e).timestamp()
+    xa = (x2-x1)/2+x1
+    CADR_x = datetime.fromtimestamp(xa)
 
-#     y2 = df_dr["qaux"].max()
-#     y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
-#     ya = (y2-y1)*0.2+y1
+    y2 = df_dr["qaux"].max()
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    ya = (y2-y1)*0.2+y1
 
-#     CADR_y = ya
-#     fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-#                 text="CADR = " + str(round(down_flex,2)) + " kWh",
-#                 showarrow=False,
-#                 yshift=0)
+    CADR_y = ya
+    fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
+                text="CADR = " + str(round(down_flex,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
 
-#         #Annotation Energy unloaded
-#     x1 = datetime.combine(date_day_select,hour_e).timestamp()
-#     x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
-#     xe = (x2-x1)/2+x1
-#     energy_x = datetime.fromtimestamp(xe)
+        #Annotation Energy unloaded
+    x1 = datetime.combine(date_day_select,hour_e).timestamp()
+    x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
+    xe = (x2-x1)/2+x1
+    energy_x = datetime.fromtimestamp(xe)
 
-#     y2 = df_bs["qaux"].max()
-#     y1 = df_dr["qaux"].min()
-#     ye = (y2-y1)*0.85+y1
+    y2 = df_bs["qaux"].max()
+    y1 = df_dr["qaux"].min()
+    ye = (y2-y1)*0.85+y1
 
-#     energy_y = ye
-#     fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-#                 text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
-#                 showarrow=False,
-#                 yshift=0)
+    energy_y = ye
+    fig_dr_day.add_annotation(x=energy_x, y=energy_y,
+                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
 
-#         #Annotation Ratio
-#     ratio_x = energy_x
-#     ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
+        #Annotation Ratio
+    ratio_x = energy_x
+    ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
     
-#     fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
-#                 text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
-#                 showarrow=False,
-#                 yshift=0)
+    fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
+                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
+                showarrow=False,
+                yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
@@ -341,7 +339,6 @@ fig_dr_year.add_trace(go.Scatter(
     ),secondary_y=False)
 
 fig_dr_year.add_hline(y=sp,  line_width=1, line_dash="dash", line_color="blue")
-#fig_dr_year.add_hline(y=fstp,  line_width=2, line_dash="dash", line_color="blue")
 fig_dr_year.add_vline(x=date_day_str,  line_width=1, line_dash="dash", line_color="red")
 fig_dr_year.update_traces(marker_size=10)
 
