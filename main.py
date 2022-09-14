@@ -278,40 +278,40 @@ if sp != fstp:
     xa = (x2-x1)/2+x1
     CADR_x = datetime.fromtimestamp(xa)
 
-    y2 = df_dr["qaux"].max()
-    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
-    ya = (y2-y1)*0.2+y1
+    # y2 = df_dr["qaux"].max()
+    # y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    # ya = (y2-y1)*0.2+y1
 
-    CADR_y = ya
-    fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-                text="CADR = " + str(round(down_flex,2)) + " kWh",
-                showarrow=False,
-                yshift=0)
+    # CADR_y = ya
+    # fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
+    #             text="CADR = " + str(round(down_flex,2)) + " kWh",
+    #             showarrow=False,
+    #             yshift=0)
 
-        #Annotation Energy unloaded
-    x1 = datetime.combine(date_day_select,hour_e).timestamp()
-    x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
-    xe = (x2-x1)/2+x1
-    energy_x = datetime.fromtimestamp(xe)
+    #     #Annotation Energy unloaded
+    # x1 = datetime.combine(date_day_select,hour_e).timestamp()
+    # x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
+    # xe = (x2-x1)/2+x1
+    # energy_x = datetime.fromtimestamp(xe)
 
-    y2 = df_bs["qaux"].max()
-    y1 = df_dr["qaux"].min()
-    ye = (y2-y1)*0.85+y1
+    # y2 = df_bs["qaux"].max()
+    # y1 = df_dr["qaux"].min()
+    # ye = (y2-y1)*0.85+y1
 
-    energy_y = ye
-    fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
-                showarrow=False,
-                yshift=0)
+    # energy_y = ye
+    # fig_dr_day.add_annotation(x=energy_x, y=energy_y,
+    #             text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+    #             showarrow=False,
+    #             yshift=0)
 
-        #Annotation Ratio
-    ratio_x = energy_x
-    ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
+    #     #Annotation Ratio
+    # ratio_x = energy_x
+    # ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
     
-    fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
-                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
-                showarrow=False,
-                yshift=0)
+    # fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
+    #             text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
+    #             showarrow=False,
+    #             yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
