@@ -279,14 +279,15 @@ if sp != fstp:
     CADR_x = datetime.fromtimestamp(xa)
 
     y2 = df_dr["qaux"].max()
-    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
-    ya = (y2-y1)*0.2+y1
+    st.write(CADR_x)
+    # y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    # ya = (y2-y1)*0.2+y1
 
-    CADR_y = ya
-    fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-                text="CADR = " + str(round(down_flex,2)) + " kWh",
-                showarrow=False,
-                yshift=0)
+    # CADR_y = ya
+    # fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
+    #             text="CADR = " + str(round(down_flex,2)) + " kWh",
+    #             showarrow=False,
+    #             yshift=0)
 
     #     #Annotation Energy unloaded
     # x1 = datetime.combine(date_day_select,hour_e).timestamp()
