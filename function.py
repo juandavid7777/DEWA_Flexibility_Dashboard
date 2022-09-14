@@ -121,7 +121,7 @@ def download_data_csv(url):
 
     return df
 
-@st.cache(suppress_st_warning=True)
+
 def roundTime(dt=None, roundTo=60):
     """ Round a datetime object to any time lapse in seconds
    dt : datetime.datetime object, default now.
