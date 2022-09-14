@@ -281,6 +281,7 @@ if sp != fstp:
     CADR_x = datetime.fromtimestamp(xa)
 
     y2 = df_dr["qaux"].max()
+    st.write(roundTime(CADR_x, 60*6))
     y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
     ya = (y2-y1)*0.2+y1
 
