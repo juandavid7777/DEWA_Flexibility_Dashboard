@@ -304,6 +304,7 @@ if sp != fstp:
     #             showarrow=False,
     #             yshift=0)
 
+
     #     #Annotation Ratio
     # ratio_x = energy_x
     # ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
