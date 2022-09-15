@@ -368,7 +368,7 @@ fig_gauge = go.Figure(go.Indicator(
         'shape': "bullet",
         'axis': {'range': [None, dr_cons]},
         'threshold': {
-            'line': {'color': "k", 'width': 2},
+            'line': {'color': "gray", 'width': 2},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
