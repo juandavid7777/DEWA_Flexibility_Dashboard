@@ -372,9 +372,9 @@ fig_gauge = go.Figure(go.Indicator(
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "dimgray"},
+            {'range': [0, bs_cons], 'color': "lightgray"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
-        'bar':{'color':'dimgray'}
+        'bar':{'color':'darkblue'}
         }))
 
 fig_gauge.add_annotation(x=bs_cons, y=100,
