@@ -377,6 +377,11 @@ fig_gauge = go.Figure(go.Indicator(
         'bar':{'color':'darkblue'}
         }))
 
+fig_gauge.add_annotation(x=bs_cons, y=100,
+                text="Text =",
+                showarrow=False,
+                yshift=0)
+
 fig_gauge.update_layout(height = 250)
 
 # Setting up page
