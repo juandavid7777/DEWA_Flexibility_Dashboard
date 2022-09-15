@@ -268,7 +268,7 @@ fig_dr_day.add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig_dr_day.update_layout(
-    title="Selection model results",
+    title="Model results",
     xaxis_title="Time",
     yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
@@ -380,14 +380,22 @@ fig_gauge = go.Figure(go.Indicator(
 
 fig_gauge.update_layout(height = 250)
 
-fig_CvsE = make_subplots(rows=1, cols=2, specs=[[{"secondary_y": True},{"secondary_y": True}]])
+# HVAC plots ---------------------------------------------------------------------------------
+df_bs = df_bs.loc[date_day_str]
+df_dr = df_dr.loc[date_day_str]
+
+fig_CvsE = make_subplots(rows=1,
+                         cols=2,
+                         specs=[[{"secondary_y": True},{"secondary_y": True}]],
+                         subplot_titles=("Loads vs COP", "COP vs Outdoor temp")
+                        )
 
 #Adds metric
 fig_CvsE.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["e_w"],
     mode = 'lines',
-    name = "Electric flexible",
+    name = "Electric load",
     line = dict(width = 2.0, color = "red", dash = "dash")
     ),row = 1, col =1,secondary_y=False)
 
@@ -396,7 +404,7 @@ fig_CvsE.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["qaux"],
     mode = 'lines',
-    name = "Cooling flexible",
+    name = "Cooling lod",
     line = dict(width = 2.0, color = "orchid", dash = "dash")
     ),row = 1, col =1,secondary_y=False)
 
@@ -428,7 +436,7 @@ fig_CvsE.add_trace(go.Scatter(
     ),row = 1, col =2,secondary_y=True)
 
 fig_CvsE.update_layout(
-    title="Cooling load vs electrical load",
+    title="HVAC efficiency",
     legend_title="Variables",
     )
 
