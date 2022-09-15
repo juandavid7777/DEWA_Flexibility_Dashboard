@@ -378,17 +378,7 @@ fig_gauge = go.Figure(go.Indicator(
 
 fig_gauge.update_layout(height = 250)
 
-# Plots Cooling laod vs Electrical load --------------------------------------
-fig_CvsE = make_subplots(specs=[[{"secondary_y": True}]])
-
-# #Adds metric
-# fig_CvsE.add_trace(go.Scatter(
-#     x=df_bs['date'],
-#     y=df_bs["e_w"],
-#     mode = 'lines',
-#     name = "Electric baseline",
-#     line = dict(width = 1.0, color = "red", dash = "solid")
-#     ),secondary_y=False)
+fig_CvsE = make_subplots(rows=1, cols=2, specs=[[{"secondary_y": True},{"secondary_y": True}]])
 
 #Adds metric
 fig_CvsE.add_trace(go.Scatter(
@@ -397,16 +387,7 @@ fig_CvsE.add_trace(go.Scatter(
     mode = 'lines',
     name = "Electric flexible",
     line = dict(width = 2.0, color = "red", dash = "dash")
-    ),secondary_y=False)
-
-# #Adds metric
-# fig_CvsE.add_trace(go.Scatter(
-#     x=df_bs['date'],
-#     y=df_bs["qaux"],
-#     mode = 'lines',
-#     name = "Cooling baseline",
-#     line = dict(width = 1.0, color = "orchid", dash = "solid")
-#     ),secondary_y=False)
+    ),row = 1, col =1,secondary_y=False)
 
 #Adds metric
 fig_CvsE.add_trace(go.Scatter(
@@ -415,7 +396,7 @@ fig_CvsE.add_trace(go.Scatter(
     mode = 'lines',
     name = "Cooling flexible",
     line = dict(width = 2.0, color = "orchid", dash = "dash")
-    ),secondary_y=False)
+    ),row = 1, col =1,secondary_y=False)
 
 #Adds metric
 fig_CvsE.add_trace(go.Scatter(
@@ -424,48 +405,35 @@ fig_CvsE.add_trace(go.Scatter(
     mode = 'lines',
     name = "COP (kW/kW)",
     line = dict(width = 1.0, color = "indigo", dash = "solid")
-    ),secondary_y=True)
-
-fig_CvsE.update_layout(
-    title="Cooling load vs electrical load",
-    xaxis_title="Time",
-    yaxis_title="Power (W)",
-    legend_title="Variables",
-    )
-
-fig_CvsE.update_yaxes(range=[0, 2000*1.1], secondary_y = False)
-fig_CvsE.update_yaxes(range=[0, 5], title_text="COP (kW/kW)", secondary_y = True)
-
-# Plots COP figure
-fig_COP = make_subplots(specs=[[{"secondary_y": True}]])
+    ),row = 1, col =1,secondary_y=True)
 
 #Adds metric
-fig_COP.add_trace(go.Scatter(
+fig_CvsE.add_trace(go.Scatter(
     x=df_bs['date'],
     y=df_bs["COP"],
     mode = 'lines',
     name = "COP (kW/kW)",
     line = dict(width = 1.0, color = "indigo", dash = "solid")
-    ),secondary_y=False)
+    ),row = 1, col =2,secondary_y=False)
 
 #Adds metric
-fig_COP.add_trace(go.Scatter(
+fig_CvsE.add_trace(go.Scatter(
     x=df_dr['date'],
     y=df_dr["To"],
     mode = 'lines',
     name = "Ambient Temperature (C)",
     line = dict(width = 1.0, color = "orange", dash = "solid")
-    ),secondary_y=True)
+    ),row = 1, col =2,secondary_y=True)
 
-fig_COP.update_layout(
-    title="COP vs Ambient temperature",
-    xaxis_title="Time",
-    yaxis_title="COP (kW/kW)",
+fig_CvsE.update_layout(
+    title="Cooling load vs electrical load",
     legend_title="Variables",
     )
 
-fig_COP.update_yaxes(range=[0, 5], secondary_y = False)
-fig_COP.update_yaxes(range=[0, 50], secondary_y = True, title_text="COP (kW/kW)")
+fig_CvsE.update_yaxes(range=[0, 2000*1.1], title_text = "Power (W)", secondary_y = False, row =1, col =1)
+fig_CvsE.update_yaxes(range=[0, 5], title_text = "COP (kW/kW)", secondary_y = True, row =1, col =1)
+fig_CvsE.update_yaxes(range=[0, 5], title_text = "", secondary_y = False, row =1, col =2)
+fig_CvsE.update_yaxes(range=[0, 50], title_text = "Ambient Temperature (C)", secondary_y = True, row =1, col =2)
 
 # Setting up page-----------------------------------------------------------------
 
@@ -478,7 +446,7 @@ st.plotly_chart(fig_dr_year, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
 st.plotly_chart(fig_gauge, use_container_width=True)
 st.plotly_chart(fig_CvsE, use_container_width=True)
-st.plotly_chart(fig_COP, use_container_width=True)
+
 
 
 
