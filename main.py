@@ -436,6 +436,36 @@ fig_CvsE.update_layout(
 fig_CvsE.update_yaxes(range=[0, 2000*1.1], secondary_y = False)
 fig_CvsE.update_yaxes(range=[0, 5], title_text="COP (kW/kW)", secondary_y = True)
 
+# Plots COP figure
+fig_COP = make_subplots(specs=[[{"secondary_y": True}]])
+
+#Adds metric
+fig_COP.add_trace(go.Scatter(
+    x=df_bs['date'],
+    y=df_bs["COP"],
+    mode = 'lines',
+    name = "COP (kW/kW)",
+    line = dict(width = 1.0, color = "indigo", dash = "solid")
+    ),secondary_y=False)
+
+#Adds metric
+fig_COP.add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["To"],
+    mode = 'lines',
+    name = "Ambient Temperature (C)",
+    line = dict(width = 1.0, color = "orange", dash = "solid")
+    ),secondary_y=True)
+
+fig_COP.update_layout(
+    title="COP vs Ambient temperature",
+    xaxis_title="Time",
+    yaxis_title="COP (kW/kW)",
+    legend_title="Variables",
+    )
+
+fig_COP.update_yaxes(range=[0, 5], secondary_y = False)
+fig_COP.update_yaxes(range=[0, 50], secondary_y = True, title_text="COP (kW/kW)")
 
 # Setting up page-----------------------------------------------------------------
 
@@ -448,6 +478,7 @@ st.plotly_chart(fig_dr_year, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
 st.plotly_chart(fig_gauge, use_container_width=True)
 st.plotly_chart(fig_CvsE, use_container_width=True)
+st.plotly_chart(fig_COP, use_container_width=True)
 
 
 
