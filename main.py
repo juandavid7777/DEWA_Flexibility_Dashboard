@@ -319,7 +319,7 @@ if sp != fstp:
                 yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
+fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
 
 #Day selection-----------------------------------------------------------
 fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
