@@ -378,7 +378,7 @@ fig_gauge = go.Figure(go.Indicator(
         'bar':{'color':'darkblue'}
         }))
 
-fig_gauge.update_layout(height = 250)
+# fig_gauge.update_layout(height = 250)
 
 # HVAC plots ---------------------------------------------------------------------------------
 df_bs = df_bs.loc[date_day_str]
