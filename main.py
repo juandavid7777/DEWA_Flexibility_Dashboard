@@ -203,18 +203,18 @@ df_dr = df_dr.loc[date_day_str]
     #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_bs['date'],
-    y=df_bs["qaux"],
+    y=df_bs["e_w"],
     mode = 'lines',
-    name = "Cooling baseline",
+    name = "HVAC Electricity baseline",
     line = dict(width = 1.0, color = "red", dash = "solid")
     ),secondary_y=False)
 
     #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df_dr['date'],
-    y=df_dr["qaux"],
+    y=df_dr["e_w"],
     mode = 'lines',
-    name = "Cooling flexible",
+    name = "HVAC Electricity flexible",
     line = dict(width = 2.0, color = "red", dash = "dash"),
     fill='tonexty'
     ),secondary_y=False)
