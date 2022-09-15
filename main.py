@@ -456,7 +456,11 @@ with col1:
 with col2:
    st.plotly_chart(fig_dr_year, use_container_width=True)
 
+st.markdown("""---""")
+
 st.plotly_chart(fig_CvsE, use_container_width=True)
+
+st.markdown("""---""")
 
 col3, col4 = st.columns([1,2])
 with col3:
