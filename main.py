@@ -463,7 +463,7 @@ col3, col4 = st.columns([1,6])
 with col3:
     st.plotly_chart(fig_gauge, use_container_width=True)
 
-with col2:
+with col4:
    st.plotly_chart(fig_dr_day, use_container_width=True)
 
 
