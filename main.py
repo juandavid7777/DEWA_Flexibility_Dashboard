@@ -268,7 +268,7 @@ fig_dr_day.add_trace(go.Scatter(
 fig_dr_day.update_layout(
     title="Selection model results",
     xaxis_title="Time",
-    yaxis_title="Cooling load (W)",
+    yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
     )
 
@@ -280,8 +280,8 @@ if sp != fstp:
     xa = (x2-x1)/2+x1
     CADR_x = datetime.fromtimestamp(xa)
 
-    y2 = df_dr["qaux"].max()
-    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
+    y2 = df_dr["e_w"].max()
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["e_w"]
     ya = (y2-y1)*0.2+y1
 
     CADR_y = ya
@@ -296,8 +296,8 @@ if sp != fstp:
     xe = (x2-x1)/2+x1
     energy_x = datetime.fromtimestamp(xe)
 
-    y2 = df_bs["qaux"].max()
-    y1 = df_dr["qaux"].min()
+    y2 = df_bs["e_w"].max()
+    y1 = df_dr["e_w"].min()
     ye = (y2-y1)*0.85+y1
 
     energy_y = ye
