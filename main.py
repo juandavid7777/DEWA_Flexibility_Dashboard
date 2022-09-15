@@ -386,7 +386,7 @@ df_dr = df_dr.loc[date_day_str]
 fig_CvsE = make_subplots(rows=1,
                          cols=2,
                          specs=[[{"secondary_y": True},{"secondary_y": True}]],
-                         subplot_titles=("Loads vs COP", "COP vs Outdoor temp")
+                         subplot_titles=("Loads vs COP", "COP vs Ambient temp")
                         )
 
 #Adds metric
