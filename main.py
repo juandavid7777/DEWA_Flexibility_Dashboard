@@ -366,14 +366,14 @@ fig_gauge = go.Figure(go.Indicator(
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
         'shape': "bullet",
-        'axis': {'range': [None, dr_cons]},
+        'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
             'line': {'color': "gray", 'width': 2},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "lightgray"},
-            {'range': [bs_cons, dr_cons*1.25], 'color': "lightsalmon"}],
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
         'bar':{'color':'darkblue'}
         }))
 
