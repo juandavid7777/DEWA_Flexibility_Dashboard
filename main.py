@@ -309,7 +309,7 @@ if sp != fstp:
 
         #Annotation Ratio
     ratio_x = energy_x
-    ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["qaux"]*1.1
+    ratio_y = df_bs.loc[roundTime(ratio_x, 60*6)]["e_w"]*1.1
     
     fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
                 text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
