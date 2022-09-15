@@ -448,6 +448,7 @@ fig_CvsE.update_yaxes(range=[0, 50], title_text = "Ambient Temperature (C)", sec
 
     #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
+st.markdown("""---""")
 
 col1, col2 = st.columns(2)
 with col1:
