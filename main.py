@@ -170,24 +170,24 @@ df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 dx = 6*60
 
     # Total energy used during the day
-cooling_total_bs = np.trapz(df_bs['qaux'], dx=dx)/(1000*3600)
-cooling_total_dr = np.trapz(df_dr['qaux'], dx=dx)/(1000*3600)
+cooling_total_bs = np.trapz(df_bs['e_w'], dx=dx)/(1000*3600)
+cooling_total_dr = np.trapz(df_dr['e_w'], dx=dx)/(1000*3600)
 
     # ADR event
 hour_day_end = time(23,59)
 
 df_sliced = df_bs.loc[hour_s:hour_e]
-cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
+cooling_drevent_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_s:hour_e]
-cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
+cooling_drevent_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 
 down_flex = (cooling_drevent_dr - cooling_drevent_bs)
 
     # After ADR event
 df_sliced = df_bs.loc[hour_e:hour_day_end]
-cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
+cooling_drafter_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_e:hour_day_end]
-cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
+cooling_drafter_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 
 down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
