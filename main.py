@@ -362,7 +362,7 @@ dr_cons = cooling_total_dr
 fig_gauge = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
     domain = {'x': [0.1, 1], 'y': [0, 1]},
-    title = {'text' :"<b>Cooling load</b><br><span style='color: forestgreen; font-size:0.7em'>Baseline " + str(round(bs_cons,1)) + " kWh</span>"},
+    title = {'text' :"<b>Cooling (kWh)</b><br><span style='color: forestgreen; font-size:0.7em'>Baseline " + str(round(bs_cons,1)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
         'shape': "bullet",
@@ -372,7 +372,7 @@ fig_gauge = go.Figure(go.Indicator(
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "lightgray"},
+            {'range': [0, bs_cons], 'color': "limegreen"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
         'bar':{'color':'darkblue'}
         }))
