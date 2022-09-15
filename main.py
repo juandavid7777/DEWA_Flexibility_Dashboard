@@ -157,35 +157,37 @@ result = simulate(data_sim, params, x0, tsp = "tsp2")
 data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
-# #Estimates COP
-# df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
-# df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+#Estimates COP
+df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
 
-# #Estimates electricity 
-# df_dr["e_w"] = df_dr["qaux"]/df_dr["COP"]
-# df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
+#Estimates electricity 
+df_dr["e_w"] = df_dr["qaux"]/df_dr["COP"]
+df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 
 
 #Estimates KPIs
+dx = 6*60
+
     # Total energy used during the day
-cooling_total_bs = np.trapz(df_bs['qaux'], dx=np.diff(df_bs['date'])/np.timedelta64(1, 's'))/(1000*3600)
-cooling_total_dr = np.trapz(df_dr['qaux'], dx=np.diff(df_dr['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_total_bs = np.trapz(df_bs['qaux'], dx=dx)/(1000*3600)
+cooling_total_dr = np.trapz(df_dr['qaux'], dx=dx)/(1000*3600)
 
     # ADR event
 hour_day_end = time(23,59)
 
 df_sliced = df_bs.loc[hour_s:hour_e]
-cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_s:hour_e]
-cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 
 down_flex = (cooling_drevent_dr - cooling_drevent_bs)
 
     # After ADR event
 df_sliced = df_bs.loc[hour_e:hour_day_end]
-cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_e:hour_day_end]
-cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=np.diff(df_sliced['date'])/np.timedelta64(1, 's'))/(1000*3600)
+cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 
 down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
