@@ -441,7 +441,7 @@ fig_CvsE.update_layout(
 
 fig_CvsE.update_yaxes(range=[0, 2000*1.1], title_text = "Power (W)", secondary_y = False, row =1, col =1)
 fig_CvsE.update_yaxes(range=[0, 5], title_text = "COP (kW/kW)", secondary_y = True, row =1, col =1)
-fig_CvsE.update_yaxes(range=[0, 5], title_text = "", secondary_y = False, row =1, col =2)
+fig_CvsE.update_yaxes(range=[0, 5], title_text = "COP (kW/kW)", secondary_y = False, row =1, col =2)
 fig_CvsE.update_yaxes(range=[0, 50], title_text = "Ambient Temperature (C)", secondary_y = True, row =1, col =2)
 
 # Setting up page-----------------------------------------------------------------
