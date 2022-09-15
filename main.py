@@ -459,7 +459,7 @@ with col2:
 
 st.plotly_chart(fig_CvsE, use_container_width=True)
 
-col3, col4 = st.columns([1,4])
+col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge, use_container_width=True)
 
