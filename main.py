@@ -268,7 +268,7 @@ fig_dr_day.add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig_dr_day.update_layout(
-    title="Model results",
+    # title="Model results",
     xaxis_title="Time",
     yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
@@ -435,7 +435,7 @@ fig_CvsE.add_trace(go.Scatter(
     ),row = 1, col =2,secondary_y=True)
 
 fig_CvsE.update_layout(
-    title="HVAC efficiency",
+    # title="HVAC efficiency",
     legend_title="Variables",
     )
 
@@ -448,8 +448,9 @@ fig_CvsE.update_yaxes(range=[0, 50], title_text = "Ambient Temperature (C)", sec
 
     #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
-st.markdown("""---""")
 
+st.markdown("""---""")
+st.markdown('<b style="color:midnightblue ; font-size: 30px">Ambient and model conditions</b>', unsafe_allow_html=True)
 col1, col2 = st.columns(2)
 with col1:
    st.image("Box_model.jpg")
@@ -458,11 +459,11 @@ with col2:
    st.plotly_chart(fig_dr_year, use_container_width=True)
 
 st.markdown("""---""")
-
+st.markdown('<b style="color:midnightblue ; font-size: 30px">HVAC efficiency</b>', unsafe_allow_html=True)
 st.plotly_chart(fig_CvsE, use_container_width=True)
 
 st.markdown("""---""")
-
+st.markdown('<b style="color:midnightblue ; font-size: 30px">Model results</b>', unsafe_allow_html=True)
 col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge, use_container_width=True)
