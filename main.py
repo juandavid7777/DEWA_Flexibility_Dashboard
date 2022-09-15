@@ -378,7 +378,66 @@ fig_gauge = go.Figure(go.Indicator(
 
 fig_gauge.update_layout(height = 250)
 
-# Setting up page
+# Plots Cooling laod vs Electrical load --------------------------------------
+fig_CvsE = make_subplots(specs=[[{"secondary_y": True}]])
+
+# #Adds metric
+# fig_CvsE.add_trace(go.Scatter(
+#     x=df_bs['date'],
+#     y=df_bs["e_w"],
+#     mode = 'lines',
+#     name = "Electric baseline",
+#     line = dict(width = 1.0, color = "red", dash = "solid")
+#     ),secondary_y=False)
+
+#Adds metric
+fig_CvsE.add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["e_w"],
+    mode = 'lines',
+    name = "Electric flexible",
+    line = dict(width = 2.0, color = "red", dash = "dash")
+    ),secondary_y=False)
+
+# #Adds metric
+# fig_CvsE.add_trace(go.Scatter(
+#     x=df_bs['date'],
+#     y=df_bs["qaux"],
+#     mode = 'lines',
+#     name = "Cooling baseline",
+#     line = dict(width = 1.0, color = "orchid", dash = "solid")
+#     ),secondary_y=False)
+
+#Adds metric
+fig_CvsE.add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["qaux"],
+    mode = 'lines',
+    name = "Cooling flexible",
+    line = dict(width = 2.0, color = "orchid", dash = "dash")
+    ),secondary_y=False)
+
+#Adds metric
+fig_CvsE.add_trace(go.Scatter(
+    x=df_bs['date'],
+    y=df_bs["COP"],
+    mode = 'lines',
+    name = "COP (kW/kW)",
+    line = dict(width = 1.0, color = "indigo", dash = "solid")
+    ),secondary_y=True)
+
+fig_CvsE.update_layout(
+    title="Cooling load vs electrical load",
+    xaxis_title="Time",
+    yaxis_title="Power (W)",
+    legend_title="Variables",
+    )
+
+fig_CvsE.update_yaxes(range=[0, 2000*1.1], secondary_y = False)
+fig_CvsE.update_yaxes(range=[0, 5], title_text="COP (kW/kW)", secondary_y = True)
+
+
+# Setting up page-----------------------------------------------------------------
 
     #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
@@ -388,7 +447,7 @@ st.image("Box_model.jpg")
 st.plotly_chart(fig_dr_year, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
 st.plotly_chart(fig_gauge, use_container_width=True)
-
+st.plotly_chart(fig_CvsE, use_container_width=True)
 
 
 
