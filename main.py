@@ -373,7 +373,7 @@ fig_gauge = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "lightgray"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
         'bar':{"color":"darkblue"}}))
 
 fig_gauge.update_layout(height = 250)
