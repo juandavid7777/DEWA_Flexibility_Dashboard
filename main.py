@@ -368,12 +368,13 @@ fig_gauge = go.Figure(go.Indicator(
         'shape': "bullet",
         'axis': {'range': [None, dr_cons]},
         'threshold': {
-            'line': {'color': "darkgray", 'width': 2},
+            'line': {'color': "k", 'width': 2},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "lightgray"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]}))
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}]
+        'bar':{"color":"darkblue"}}))
 
 fig_gauge.update_layout(height = 250)
 
