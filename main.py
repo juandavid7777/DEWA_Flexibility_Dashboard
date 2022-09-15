@@ -321,7 +321,7 @@ if sp != fstp:
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 40], secondary_y = True)
 
-#Second plot-----------------------------------------------------------
+#Day selection-----------------------------------------------------------
 fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_p = data
@@ -348,7 +348,7 @@ fig_dr_year.add_vline(x=date_day_str,  line_width=1, line_dash="dash", line_colo
 fig_dr_year.update_traces(marker_size=10)
 
 fig_dr_year.update_layout(
-    title="Selection yearly overview",
+    title="Weather on selected day",
     xaxis_title="Time",
     yaxis_title="Ambient Temperature (C)",
     legend_title="Variables",
@@ -378,7 +378,6 @@ fig_gauge = go.Figure(go.Indicator(
         'bar':{'color':'darkblue'}
         }))
 
-# fig_gauge.update_layout(height = 250)
 
 # HVAC plots ---------------------------------------------------------------------------------
 df_bs = df_bs.loc[date_day_str]
