@@ -372,7 +372,7 @@ fig_gauge = go.Figure(go.Indicator(
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "limegreen"},
+            {'range': [0, bs_cons], 'color': "deepskyblue"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
         'bar':{'color':'darkblue'}
         }))
