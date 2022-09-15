@@ -355,7 +355,7 @@ fig_dr_year.update_layout(
     )
 
 
-#Third plot----------------------------------------------------------
+#Gauge plot----------------------------------------------------------
 bs_cons = cooling_total_bs
 dr_cons = cooling_total_dr
 
@@ -366,7 +366,7 @@ fig_gauge = go.Figure(go.Indicator(
     title = {'text' :"<b>Elect. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,1)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True},
     gauge = {
-        'shape': "bullet",
+        'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
             'line': {'color': "royalblue", 'width': 5},
