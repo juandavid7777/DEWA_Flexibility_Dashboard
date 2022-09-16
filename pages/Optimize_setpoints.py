@@ -16,13 +16,6 @@ from plotly.subplots import make_subplots
 
 st.set_page_config(layout="wide")
 
-sps = st.sidebar.slider(
-     'Baseline setpoint',
-     10, 35, (20,26))
-
-
-# cost, df = sim_elec_cost_full(X_tsp, data_sim, date_day_str, cost_X)
-
 #Sidebar
 st.sidebar.image("gears.png")
 
@@ -38,4 +31,4 @@ date_day_select = st.sidebar.date_input(
      max_value = datetime(2019, 12, 30)
      )
 
-setpoint_bool = st.sidebar.checkbox('Flexible event for prev. days')
+# cost, df = sim_elec_cost_full(X_tsp, data_sim, date_day_str, cost_X)
