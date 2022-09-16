@@ -157,6 +157,70 @@ def chillerCOP(to, loading):
 
 @st.cache(suppress_st_warning=True)
 def sim_elec_cost_full(tsp_X, data_sim, date_day_str, cost_X):
+
+    #Param values
+
+    # Material properties -------------------------------------------------------------------------
+    Lf=0.1
+    Ccon=800
+    Kcon=1.7
+    ro=2200
+    Ccon=800
+
+    Lw=0.05
+    Af=10
+    Cw=Ccon*ro*Af*Lw
+    Rwcon=Lw/(Kcon*Af)
+
+    # Model properties -----------------------------------------------------------------------------
+    #air properties
+    Cp_air=1000
+    ro_air=1.2
+    V=30
+    C_air=ro_air*Cp_air*V
+
+    #slab film coefficient
+    hf=5
+    R12=1/(Af*hf)
+    Cf=Ccon*ro*Af*Lf
+    Cf1=Cf/2
+    Cf2=Cf1
+
+    #Insulation for walls
+    Rins=2; #U<0.57
+    uw=1/Rins
+    r0w=2*1/(uw*Af)
+
+    #Insulation for roof and floor
+    uff=1/4; #U<0.3
+    r0f=1/uff*Af
+
+    #Thermal resistance of the slab
+    Rf1f2=Lf/(2*Kcon*Af)
+    R2f1=Lf/(4*Kcon*Af)
+    Rf2g=R2f1
+
+    #h thermal resistance between air and side/back wall
+    R1sw1=1/(7*10)
+
+    #Window thermal resistance
+    Awin=6
+    uwin=1.5  #U<1.7
+    rwin=1/(uwin*Awin)
+    R1win=1/(5*Awin)
+
+    #Thermal resistance between indoor air and outdoor air including infiltration, windows and doors
+    R10=0.1
+    Delta_t=50
+
+    #Maximum capacity of the HVAC system
+    qmax=2000
+
+    #Proportional controler constant
+    Kp=1000
+
+    #Ground temperature
+    Tg=20
     
     #Gets parameters
     param_names = ["Kp", "qmax", "Delta_t", "C_air", "Cw", "Cf1", "Cf2", "R12", "R10", "R1sw1", "R1win", "r0w", "Rwcon", "r0f", "rwin", "R2f1", "Rf1f2", "Rf2g", "Tg" ]
