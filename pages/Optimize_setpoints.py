@@ -157,16 +157,6 @@ fig_dr_day.add_trace(go.Scatter(
     #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df['date'],
-    y=df["e_w"],
-    mode = 'lines',
-    name = "Electric load",
-    line = dict(width = 2.0, color = "red", dash = "dash"),
-    fill='tonexty'
-    ),secondary_y=False)
-
-    #Adds metric
-fig_dr_day.add_trace(go.Scatter(
-    x=df['date'],
     y=df["cost"],
     mode = 'lines',
     name = "Cost",
@@ -188,9 +178,8 @@ fig_dr_day.add_trace(go.Scatter(
     y=df["t1"],
     mode = 'lines',
     name = "Indoor air temperature",
-    line = dict(width = 1.0, color = "green", dash='solid')
+    line = dict(width = 2.0, color = "green", dash='dash')
     ),secondary_y=True)
-
 
     #Adds metric
 fig_dr_day.add_trace(go.Scatter(
