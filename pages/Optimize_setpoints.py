@@ -214,4 +214,4 @@ fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
 
 
 
-st.write("Succes")
+st.plotly_chart(fig_dr_day, use_container_width=True)
