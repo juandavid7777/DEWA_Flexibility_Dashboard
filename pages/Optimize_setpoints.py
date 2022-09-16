@@ -23,7 +23,8 @@ st.sidebar.image("gears.png")
     # Use inputs ---------------------------------------------------------------------------------
 sps = st.sidebar.slider(
      'Comfort ranges',
-     10, 35, (20,26))
+     18, 26, (20,26),
+     step = 2)
 
 sp = sps[1]
 fstp = sps[0]
