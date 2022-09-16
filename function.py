@@ -153,3 +153,34 @@ def chillerCOP(to, loading):
     COP = (C1*x**3) + (C2*y**3) + (C3*x**2*y) + (C4*x*y**2) + (C5*x**2) + (C6*y**2) + (C7*x*y) + (C8*x) + (C9*y) + C10
     
     return COP
+
+
+@st.cache(suppress_st_warning=True)
+def sim_elec_cost_full(tsp_X, data_sim, date_day_str, cost_X):
+    
+    #Gets parameters
+    param_names = ["Kp", "qmax", "Delta_t", "C_air", "Cw", "Cf1", "Cf2", "R12", "R10", "R1sw1", "R1win", "r0w", "Rwcon", "r0f", "rwin", "R2f1", "Rf1f2", "Rf2g", "Tg" ]
+    param_values = [Kp, qmax, Delta_t, C_air, Cw, Cf1, Cf2, R12, R10, R1sw1, R1win, r0w, Rwcon, r0f, rwin, R2f1, Rf1f2, Rf2g, Tg ]
+    params= dict(zip(param_names, param_values))
+
+    #Set initial conditions
+    state_vars = ["t1", "tceil", "t2", "tf1", "tf2", "tsw1", "tsw2", "tbw", "twin", "qaux", "error", "pi"]
+    initial_values = [24,24,24,24,24,24,24,24,24,0,0,0]
+    x0 = dict(zip(state_vars, initial_values))
+
+    #Replaces setpoint
+    data_sim = data_sim.set_index("date", drop = False)
+    data_sim.loc[date_day_str, "tsp2"] = tsp_X
+
+    #Simulate baseline data
+    result = simulate(data_sim, params, x0, tsp = "tsp2")
+    data_sim = data_sim.reset_index(drop = True)
+    df_bs = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
+
+    df_bs = df_bs.loc[date_day_str]
+    df_bs["cost"] = cost_X
+    df_bs["coste"] = df_bs["cost"] * df_bs['qaux']
+
+    cost_total = df_bs["coste"].sum()
+    
+    return cost_total, df_bs    
