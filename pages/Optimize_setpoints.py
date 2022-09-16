@@ -21,7 +21,7 @@ st.sidebar.image("gears.png")
 
     # Use inputs ---------------------------------------------------------------------------------
 sps = st.sidebar.slider(
-     'Baseline setpoint',
+     'Comfort ranges',
      10, 35, (20,26))
 
 date_day_select = st.sidebar.date_input(
