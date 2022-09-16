@@ -155,7 +155,7 @@ def chillerCOP(to, loading):
     return COP
 
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def sim_elec_cost_full(tsp_X, data_sim, date_day_str, cost_X):
 
     #Param values

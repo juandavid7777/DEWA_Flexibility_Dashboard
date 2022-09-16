@@ -125,9 +125,9 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-cost_X = list(np.ones(80) *0.8)
-cost_X.extend(list(np.ones(80) *1.4))
-cost_X.extend(list(np.ones(80) *0.8))
+cost_X = list(np.ones(80) *35.6)
+cost_X.extend(list(np.ones(80) *62.3))
+cost_X.extend(list(np.ones(80) *35.6))
 
 #Gets optimal setpoint
 
