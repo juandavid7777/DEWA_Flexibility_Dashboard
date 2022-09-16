@@ -160,7 +160,7 @@ fig_dr_day.add_trace(go.Scatter(
     y=df["cost"],
     mode = 'lines',
     name = "Cost",
-    line = dict(width = 1.0, color = "blue", dash='solid')
+    line = dict(width = 1.0, color = "indigo", dash='solid')
     ),secondary_y=True)
 
     #Adds metric
@@ -198,7 +198,7 @@ fig_dr_day.update_layout(
     )
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
+fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
 
 
 
