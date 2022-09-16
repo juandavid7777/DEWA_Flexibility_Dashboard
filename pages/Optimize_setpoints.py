@@ -134,8 +134,84 @@ cost_X.extend(list(np.ones(80) *0.8))
 with open('optimized_solutions.json', 'r') as fp:
     dict_sol = json.load(fp)
     
-
-
 cost, df = sim_elec_cost_full(dict_sol["24,20"], data_sim, date_day_str, cost_X)
+
+#Estimates COP
+df["COP"] = df.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+
+#Estimates electricity 
+df["e_w"] = df["qaux"]/df["COP"]
+
+#Plotting -------------------------------------------------------------------------------------   
+fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["qaux"],
+    mode = 'lines',
+    name = "Cooling load",
+    line = dict(width = 1.0, color = "red", dash = "solid")
+    ),secondary_y=False)
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["e_w"],
+    mode = 'lines',
+    name = "Electric load",
+    line = dict(width = 2.0, color = "red", dash = "dash"),
+    fill='tonexty'
+    ),secondary_y=False)
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["cost"],
+    mode = 'lines',
+    name = "Cost",
+    line = dict(width = 1.0, color = "blue", dash='solid')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["tsp2"],
+    mode = 'lines',
+    name = "Setpoint - flexible",
+    line = dict(width = 2.0, color = "blue", dash='dash')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["t1"],
+    mode = 'lines',
+    name = "Indoor air temperature",
+    line = dict(width = 1.0, color = "green", dash='solid')
+    ),secondary_y=True)
+
+
+    #Adds metric
+fig_dr_day.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["To"],
+    mode = 'lines',
+    name = "Ambient Temperature",
+    line = dict(width = 1.0, color = "orange")
+    ),secondary_y=True)
+
+fig_dr_day.update_layout(
+    # title="Model results",
+    xaxis_title="Time",
+    yaxis_title="HVAC electrical load (W)",
+    legend_title="Variables",
+    )
+
+fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
+
+
+
 
 st.write("Succes")
