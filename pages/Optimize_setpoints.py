@@ -23,6 +23,10 @@ st.sidebar.image("gears.png")
 sps = st.sidebar.slider(
      'Comfort ranges',
      10, 35, (20,26))
+sp = sps[0]
+fstp = sps[1]
+
+st.write(sps[0], sps[1])
 
 date_day_select = st.sidebar.date_input(
      "Analysis date",
