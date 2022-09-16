@@ -134,7 +134,7 @@ cost_X.extend(list(np.ones(80) *35.6))
 with open('optimized_solutions.json', 'r') as fp:
     dict_sol = json.load(fp)
     
-cost, df = sim_elec_cost_full(dict_sol["24,20"], data_sim, date_day_str, cost_X)
+cost, df = sim_elec_cost_full(dict_sol[str(sp)+","+str(fstp)], data_sim, date_day_str, cost_X)
 
 #Estimates COP
 df["COP"] = df.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
