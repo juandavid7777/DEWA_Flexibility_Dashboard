@@ -126,7 +126,7 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-price_aed = 0.32
+price_aed = 0.32*100
 price_signal = download_data_csv('dynamic_setpoint_opt.csv') 
 price_signal = price_signal.set_index("date", drop = False)
 cost_X = list(price_signal["price_normalized"]*0.32)
