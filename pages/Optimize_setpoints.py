@@ -126,9 +126,11 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-cost_X = list(np.ones(80) *35.6)
-cost_X.extend(list(np.ones(80) *62.3))
-cost_X.extend(list(np.ones(80) *35.6))
+price_aed = 0.32
+price_signal = download_data_csv('environment_data.csv') 
+price_signal = price_signal.set_index("date", drop = False)
+cost_X = list(price_signal["price_normalized"]*0.32)
+
 
 #Gets optimal setpoint
 
