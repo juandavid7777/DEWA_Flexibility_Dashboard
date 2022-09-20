@@ -132,7 +132,7 @@ cost_X.extend(list(np.ones(80) *35.6))
 
 #Gets optimal setpoint
 
-with open('optimized_solutions.json', 'r') as fp:
+with open('optimized_dynamic_solutions.json', 'r') as fp:
     dict_sol = json.load(fp)
     
 cost, df = sim_elec_cost_full(dict_sol[str(sp)+","+str(fstp)], data_sim, date_day_str, cost_X)
