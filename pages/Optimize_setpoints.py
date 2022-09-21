@@ -126,10 +126,11 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-price_aed = 0.361
+avg_price_aed = 0.32
+amp = 0.198622
 price_signal = download_data_csv('dynamic_setpoint_opt.csv') 
 price_signal = price_signal.set_index("date", drop = False)
-cost_X = list(price_signal["price_normalized"]*price_aed)
+cost_X = list((price_signal["price_normalized"]-price_signal["price_normalized"].mean())*amp+avg_price_aed)
 
 
 #Gets optimal setpoint
