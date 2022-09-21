@@ -23,7 +23,7 @@ st.sidebar.image("gears.png")
     # Use inputs ---------------------------------------------------------------------------------
 sps = st.sidebar.slider(
      'Comfort limits',
-     18, 26, (20,26),
+     18, 26, (20,24),
      step = 2)
 
 sp = sps[1]
@@ -164,7 +164,7 @@ fig_cost.add_trace(go.Scatter(
     y=df["cost"],
     mode = 'lines',
     name = "Marginal cost signal",
-    line = dict(width = 1.0, color = "indigo", dash='solid')
+    line = dict(width = 1.0, color = "crimson", dash='solid')
     ),secondary_y=False)
 
     #Adds metric
