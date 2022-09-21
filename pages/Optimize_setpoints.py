@@ -219,15 +219,6 @@ fig_dr_day.add_trace(go.Scatter(
     #Adds metric
 fig_dr_day.add_trace(go.Scatter(
     x=df['date'],
-    y=df["cost"],
-    mode = 'lines',
-    name = "Cost",
-    line = dict(width = 1.0, color = "indigo", dash='solid')
-    ),secondary_y=True)
-
-    #Adds metric
-fig_dr_day.add_trace(go.Scatter(
-    x=df['date'],
     y=df["tsp2"],
     mode = 'lines',
     name = "Setpoint - flexible",
