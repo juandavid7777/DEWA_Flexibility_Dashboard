@@ -248,8 +248,8 @@ fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 # Layout --------------------------------------------------------------
 
  #Title
-st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
+st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Marginal cost minimization based on thermal comfort limits</b>', unsafe_allow_html=True)
 st.markdown("""---""")
-st.markdown('<b style="color:midnightblue ; font-size: 25px">Ambient and model conditions</b>', unsafe_allow_html=True)
+st.markdown('<b style="color:midnightblue ; font-size: 25px">Optimized setpoint schedule</b>', unsafe_allow_html=True)
 st.plotly_chart(fig_cost, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
