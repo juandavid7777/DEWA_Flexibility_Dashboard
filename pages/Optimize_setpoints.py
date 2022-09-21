@@ -151,20 +151,11 @@ fig_cost = make_subplots(specs=[[{"secondary_y": True}]])
     #Adds metric
 fig_cost.add_trace(go.Scatter(
     x=df['date'],
-    y=df["qaux"],
-    mode = 'lines',
-    name = "Cooling load",
-    line = dict(width = 1.0, color = "red", dash = "solid")
-    ),secondary_y=False)
-
-    #Adds metric
-fig_cost.add_trace(go.Scatter(
-    x=df['date'],
     y=df["cost"],
     mode = 'lines',
     name = "Cost",
     line = dict(width = 1.0, color = "indigo", dash='solid')
-    ),secondary_y=True)
+    ),secondary_y=False)
 
     #Adds metric
 fig_cost.add_trace(go.Scatter(
