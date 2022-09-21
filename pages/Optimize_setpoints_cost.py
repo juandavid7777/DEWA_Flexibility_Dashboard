@@ -164,7 +164,7 @@ fig_cost.add_trace(go.Scatter(
     y=df["cost"],
     mode = 'lines',
     name = "Marginal cost signal",
-    line = dict(width = 3.0, color = "ruby", dash='solid')
+    line = dict(width = 3.0, color = "crimson", dash='solid')
     ),secondary_y=False)
 
     #Adds metric
