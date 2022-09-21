@@ -242,7 +242,7 @@ fig_dr_day.update_layout(
     )
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
+# fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
 
 # Layout --------------------------------------------------------------
 st.plotly_chart(fig_cost, use_container_width=True)
