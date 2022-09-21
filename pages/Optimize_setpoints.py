@@ -246,5 +246,10 @@ fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 # fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
 
 # Layout --------------------------------------------------------------
+
+ #Title
+st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
+st.markdown("""---""")
+st.markdown('<b style="color:midnightblue ; font-size: 25px">Ambient and model conditions</b>', unsafe_allow_html=True)
 st.plotly_chart(fig_cost, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
