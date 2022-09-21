@@ -192,7 +192,7 @@ fig_cost.update_layout(
     )
 
 fig_cost.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig_cost.update_yaxes(range=[0, 65], secondary_y = True)
+# fig_cost.update_yaxes(range=[0, 65], secondary_y = True)
 
 # Second plot ---------------------------------------------------------
 
