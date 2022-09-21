@@ -22,7 +22,7 @@ st.sidebar.image("gears.png")
 
     # Use inputs ---------------------------------------------------------------------------------
 sps = st.sidebar.slider(
-     'Comfort ranges',
+     'Comfort limits',
      18, 26, (20,26),
      step = 2)
 
@@ -36,7 +36,7 @@ date_day_select = st.sidebar.date_input(
      max_value = datetime(2019, 12, 30)
      )
 
-setpoint_bool = st.sidebar.checkbox('Flexible event for prev. days')
+TOU_bool = st.sidebar.checkbox('TOU marginal cost')
 
 # Material properties -------------------------------------------------------------------------
 Lf=0.1
