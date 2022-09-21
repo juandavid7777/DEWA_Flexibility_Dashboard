@@ -145,7 +145,66 @@ df["COP"] = df.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1
 #Estimates electricity 
 df["e_w"] = df["qaux"]/df["COP"]
 
-#Plotting -------------------------------------------------------------------------------------   
+# First plot-------------------------------------------------------------------------------------   
+fig_cost = make_subplots(specs=[[{"secondary_y": True}]])
+
+    #Adds metric
+fig_cost.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["qaux"],
+    mode = 'lines',
+    name = "Cooling load",
+    line = dict(width = 1.0, color = "red", dash = "solid")
+    ),secondary_y=False)
+
+    #Adds metric
+fig_cost.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["cost"],
+    mode = 'lines',
+    name = "Cost",
+    line = dict(width = 1.0, color = "indigo", dash='solid')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_cost.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["tsp2"],
+    mode = 'lines',
+    name = "Setpoint - flexible",
+    line = dict(width = 2.0, color = "blue", dash='dash')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_cost.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["t1"],
+    mode = 'lines',
+    name = "Indoor air temperature",
+    line = dict(width = 2.0, color = "green", dash='dash')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_cost.add_trace(go.Scatter(
+    x=df['date'],
+    y=df["To"],
+    mode = 'lines',
+    name = "Ambient Temperature",
+    line = dict(width = 1.0, color = "orange")
+    ),secondary_y=True)
+
+fig_cost.update_layout(
+    # title="Model results",
+    xaxis_title="Time",
+    yaxis_title="HVAC electrical load (W)",
+    legend_title="Variables",
+    )
+
+fig_cost.update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_cost.update_yaxes(range=[0, 65], secondary_y = True)
+
+# Second plot ---------------------------------------------------------
+
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
 
     #Adds metric
@@ -203,7 +262,6 @@ fig_dr_day.update_layout(
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
 fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
 
-
-
-
+# Layout --------------------------------------------------------------
+st.plotly_chart(fig_cost, use_container_width=True)
 st.plotly_chart(fig_dr_day, use_container_width=True)
