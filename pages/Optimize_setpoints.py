@@ -126,7 +126,7 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-price_aed = 0.32*100
+price_aed = 0.361
 price_signal = download_data_csv('dynamic_setpoint_opt.csv') 
 price_signal = price_signal.set_index("date", drop = False)
 cost_X = list(price_signal["price_normalized"]*price_aed)
@@ -153,7 +153,7 @@ fig_cost.add_trace(go.Scatter(
     x=df['date'],
     y=df["cost"],
     mode = 'lines',
-    name = "Cost",
+    name = "Marginal cost signal",
     line = dict(width = 1.0, color = "indigo", dash='solid')
     ),secondary_y=False)
 
@@ -187,7 +187,7 @@ fig_cost.add_trace(go.Scatter(
 fig_cost.update_layout(
     # title="Model results",
     xaxis_title="Time",
-    yaxis_title="HVAC electrical load (W)",
+    yaxis_title="Cost (AED)",
     legend_title="Variables",
     )
 
