@@ -126,17 +126,26 @@ data_sim["tsp2"] = tsp
 tsp2 = fstp
 
 #Cost profile - define a price profile
-avg_price_aed = 0.32
-amp = 0.198622
-price_signal = download_data_csv('dynamic_setpoint_opt.csv') 
-price_signal = price_signal.set_index("date", drop = False)
-cost_X = list((price_signal["price_normalized"]-price_signal["price_normalized"].mean())*amp+avg_price_aed)
+if TOU_bool == False:
+    avg_price_aed = 0.32
+    amp = 0.198622
+    price_signal = download_data_csv('dynamic_setpoint_opt.csv') 
+    price_signal = price_signal.set_index("date", drop = False)
+    cost_X = list((price_signal["price_normalized"]-price_signal["price_normalized"].mean())*amp+avg_price_aed)
 
+    #Gets optimal setpoint
+    with open('optimized_dynamic_solutions.json', 'r') as fp:
+        dict_sol = json.load(fp)
 
-#Gets optimal setpoint
+else:
+    price_signal = download_data_csv('tou_setpoint_opt.csv') 
+    price_signal = price_signal.set_index("date", drop = False)
+    cost_X = list(price_signal["price_normalized"])
 
-with open('optimized_dynamic_solutions.json', 'r') as fp:
-    dict_sol = json.load(fp)
+    #Gets optimal setpoint
+    with open('optimized_tou_solutions.json', 'r') as fp:
+        dict_sol = json.load(fp)
+
     
 cost, df = sim_elec_cost_full(dict_sol[str(sp)+"-"+str(fstp)], data_sim, date_day_str, cost_X)
 
