@@ -566,10 +566,10 @@ fig_gauge_elec = go.Figure(go.Indicator(
         }))
 
 
-fig_gauge_elec.update_layout(
-    margin=dict(l=10, r=10, t=10, b=10),
-    height = 100
-)
+# fig_gauge_elec.update_layout(
+#     margin=dict(l=10, r=10, t=10, b=10),
+#     height = 100
+# )
 
 
 # HVAC plots ---------------------------------------------------------------------------------
@@ -661,7 +661,7 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col1, col2 = st.columns([1,2])
 with col1:
     st.plotly_chart(fig_gauge_cool, use_container_width=True)
-    st.table(df_cool_table)
+    # st.table(df_cool_table)
 
 with col2:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
@@ -670,7 +670,7 @@ with col2:
 col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge_elec, use_container_width=True)
-    st.table(df_elec_table)
+    # st.table(df_elec_table)
 
 with col4:
     st.plotly_chart(fig_dr_day, use_container_width=True)
