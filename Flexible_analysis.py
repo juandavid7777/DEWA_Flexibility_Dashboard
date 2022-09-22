@@ -522,7 +522,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
-            'line': {'color': "royalblue", 'width': 5},
+            'line': {'color': "darkviolet", 'width': 3},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
@@ -545,7 +545,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
-            'line': {'color': "royalblue", 'width': 5},
+            'line': {'color': "royalblue", 'width': 3},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
