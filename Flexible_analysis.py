@@ -218,7 +218,7 @@ elec_drafter_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_e:hour_day_end]
 elec_drafter_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
 
-elec_down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
+elec_down_flex_after = (elec_drafter_dr - elec_drafter_bs)
 
     # Efficiency
 elec_eff = elec_down_flex_after/elec_down_flex
@@ -434,8 +434,8 @@ if sp != fstp:
     xa = (x2-x1)/2+x1
     CADR_x = datetime.fromtimestamp(xa)
 
-    y2 = df_dr["e_w"].max()
-    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["e_w"]
+    y2 = df_dr["qaux"].max()
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["qaux"]
     ya = (y2-y1)*0.2+y1
 
     CADR_y = ya
@@ -450,8 +450,8 @@ if sp != fstp:
     xe = (x2-x1)/2+x1
     energy_x = datetime.fromtimestamp(xe)
 
-    y2 = df_bs["e_w"].max()
-    y1 = df_dr["e_w"].min()
+    y2 = df_bs["qaux"].max()
+    y1 = df_dr["qaux"].min()
     ye = (y2-y1)*0.85+y1
 
     energy_y = ye
