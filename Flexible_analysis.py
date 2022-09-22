@@ -593,6 +593,7 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge, use_container_width=True)
+    st.plotly_chart(fig_gauge, use_container_width=True)
 
 with col4:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
