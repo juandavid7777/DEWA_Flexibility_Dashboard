@@ -545,13 +545,13 @@ fig_gauge_elec = go.Figure(go.Indicator(
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
-            'line': {'color': "royalblue", 'width': 3},
+            'line': {'color': "darkred", 'width': 3},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "dodgerblue"},
+            {'range': [0, bs_cons], 'color': "salmon"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
-        'bar':{'color':'darkblue'}
+        'bar':{'color':'darkred'}
         }))
 
 
