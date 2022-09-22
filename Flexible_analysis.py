@@ -333,7 +333,7 @@ fig_dr_day_cool .add_trace(go.Scatter(
     y=df_bs["qaux"],
     mode = 'lines',
     name = "HVAC Cooling baseline",
-    line = dict(width = 1.0, color = "red", dash = "solid")
+    line = dict(width = 1.0, color = "orchid", dash = "solid")
     ),secondary_y=False)
 
     #Adds metric
@@ -342,7 +342,7 @@ fig_dr_day_cool .add_trace(go.Scatter(
     y=df_dr["qaux"],
     mode = 'lines',
     name = "HVAC Cooling flexible",
-    line = dict(width = 2.0, color = "red", dash = "dash"),
+    line = dict(width = 2.0, color = "orchid", dash = "dash"),
     fill='tonexty'
     ),secondary_y=False)
 
