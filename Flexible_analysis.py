@@ -550,7 +550,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "salmon"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
+            {'range': [bs_cons, dr_cons], 'color': "mistyrose"}],
         'bar':{'color':'darkred'}
         }))
 
