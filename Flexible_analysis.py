@@ -171,30 +171,57 @@ df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 #Estimates KPIs
 dx = 6*60
 
+#Cooling KPIs--------------------------------------------------
     # Total energy used during the day
-cooling_total_bs = np.trapz(df_bs['e_w'], dx=dx)/(1000*3600)
-cooling_total_dr = np.trapz(df_dr['e_w'], dx=dx)/(1000*3600)
+cooling_total_bs = np.trapz(df_bs['qaux'], dx=dx)/(1000*3600)
+cooling_total_dr = np.trapz(df_dr['qaux'], dx=dx)/(1000*3600)
 
     # ADR event
 hour_day_end = time(23,59)
 
 df_sliced = df_bs.loc[hour_s:hour_e]
-cooling_drevent_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+cooling_drevent_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_s:hour_e]
-cooling_drevent_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+cooling_drevent_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 
-down_flex = (cooling_drevent_dr - cooling_drevent_bs)
+cool_down_flex = (cooling_drevent_dr - cooling_drevent_bs)
 
     # After ADR event
 df_sliced = df_bs.loc[hour_e:hour_day_end]
-cooling_drafter_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+cooling_drafter_bs = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 df_sliced = df_dr.loc[hour_e:hour_day_end]
-cooling_drafter_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+cooling_drafter_dr = np.trapz(df_sliced["qaux"], dx=dx)/(1000*3600)
 
-down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
+cool_down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
 
     # Efficiency
-eff = down_flex_after/down_flex
+cool_eff = cool_down_flex_after/cool_down_flex
+
+#Electrical KPIs-----------------------------------------------
+    # Total energy used during the day
+elec_total_bs = np.trapz(df_bs['e_w'], dx=dx)/(1000*3600)
+elec_total_dr = np.trapz(df_dr['e_w'], dx=dx)/(1000*3600)
+
+    # ADR event
+hour_day_end = time(23,59)
+
+df_sliced = df_bs.loc[hour_s:hour_e]
+elec_drevent_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+df_sliced = df_dr.loc[hour_s:hour_e]
+elec_drevent_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+
+elec_down_flex = (elec_drevent_dr - elec_drevent_bs)
+
+    # After ADR event
+df_sliced = df_bs.loc[hour_e:hour_day_end]
+elec_drafter_bs = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+df_sliced = df_dr.loc[hour_e:hour_day_end]
+elec_drafter_dr = np.trapz(df_sliced["e_w"], dx=dx)/(1000*3600)
+
+elec_down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
+
+    # Efficiency
+elec_eff = elec_down_flex_after/elec_down_flex
 
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
@@ -288,7 +315,7 @@ if sp != fstp:
 
     CADR_y = ya
     fig_dr_day.add_annotation(x=CADR_x, y=CADR_y,
-                text="CADR = " + str(round(down_flex,2)) + " kWh",
+                text="CADR = " + str(round(elec_down_flex,2)) + " kWh",
                 showarrow=False,
                 yshift=0)
 
@@ -304,7 +331,7 @@ if sp != fstp:
 
     energy_y = ye
     fig_dr_day.add_annotation(x=energy_x, y=energy_y,
-                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+                text="Energy shift = " + str(round(elec_down_flex_after,2)) + " kWh",
                 showarrow=False,
                 yshift=0)
 
@@ -314,7 +341,7 @@ if sp != fstp:
     ratio_y = df_bs["e_w"].max()*1.25
     
     fig_dr_day.add_annotation(x=ratio_x, y=ratio_y,
-                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
+                text="Energy shift/CADR ratio =" + str(round(elec_eff*100,2)) + "%",
                 showarrow=False,
                 yshift=0)
 
@@ -413,7 +440,7 @@ if sp != fstp:
 
     CADR_y = ya
     fig_dr_day_cool .add_annotation(x=CADR_x, y=CADR_y,
-                text="CADR = " + str(round(down_flex,2)) + " kWh",
+                text="CADR = " + str(round(cool_down_flex,2)) + " kWh",
                 showarrow=False,
                 yshift=0)
 
@@ -429,7 +456,7 @@ if sp != fstp:
 
     energy_y = ye
     fig_dr_day_cool .add_annotation(x=energy_x, y=energy_y,
-                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+                text="Energy shift = " + str(round(cool_down_flex_after,2)) + " kWh",
                 showarrow=False,
                 yshift=0)
 
@@ -439,7 +466,7 @@ if sp != fstp:
     ratio_y = df_bs["e_w"].max()*1.25
     
     fig_dr_day_cool .add_annotation(x=ratio_x, y=ratio_y,
-                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
+                text="Energy shift/CADR ratio =" + str(round(cool_eff*100,2)) + "%",
                 showarrow=False,
                 yshift=0)
 
