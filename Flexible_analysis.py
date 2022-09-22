@@ -532,8 +532,8 @@ fig_gauge_cool = go.Figure(go.Indicator(
         }))
 
 #Gauge plot electrical----------------------------------------------------------
-bs_cons = cooling_total_bs
-dr_cons = cooling_total_dr
+bs_cons = elec_total_bs
+dr_cons = elec_total_dr
 
 
 fig_gauge_elec = go.Figure(go.Indicator(
