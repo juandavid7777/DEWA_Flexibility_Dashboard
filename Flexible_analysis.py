@@ -538,6 +538,10 @@ fig_gauge_cool = go.Figure(go.Indicator(
         'bar':{'color':'indigo'}
         }))
 
+fig_gauge_cool.update_layout(
+    margin=dict(l=40, r=40, t=40, b=40)
+)
+
 #Gauge plot electrical----------------------------------------------------------
 bs_cons = elec_total_bs
 dr_cons = elec_total_dr
@@ -559,11 +563,12 @@ fig_gauge_elec = go.Figure(go.Indicator(
             {'range': [0, bs_cons], 'color': "mistyrose"},
             {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
         'bar':{'color':'darkred'}
-        }))
+        }
+    margin=dict(l=40, r=40, t=40, b=40)))
 
-fig_gauge_elec.update_layout(
-    margin=dict(l=20, r=20, t=20, b=20)
-)
+# fig_gauge_elec.update_layout(
+#     margin=dict(l=40, r=40, t=40, b=40)
+# )
 
 
 # HVAC plots ---------------------------------------------------------------------------------
