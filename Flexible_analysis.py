@@ -561,7 +561,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
         'bar':{'color':'darkred'}
         }))
 
-fig_gauge_elec.update_layout(height = 500)
+fig_gauge_elec.update_layout(height = 200)
 
 
 # HVAC plots ---------------------------------------------------------------------------------
