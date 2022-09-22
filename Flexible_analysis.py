@@ -169,6 +169,9 @@ df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 
 
 #Estimates KPIs
+df_bs = df_bs.loc[date_day_str]
+df_dr = df_dr.loc[date_day_str]
+
 dx = 6*60
 
 #Cooling KPIs--------------------------------------------------
