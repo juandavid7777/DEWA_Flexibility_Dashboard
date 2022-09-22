@@ -522,11 +522,11 @@ fig_gauge_cool = go.Figure(go.Indicator(
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
-            'line': {'color': "darkviolet", 'width': 3},
+            'line': {'color': "indigo", 'width': 3},
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "darkviolet"},
+            {'range': [0, bs_cons], 'color': "orchid"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
         'bar':{'color':'indigo'}
         }))
