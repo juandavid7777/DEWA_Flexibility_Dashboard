@@ -589,7 +589,7 @@ fig_CvsE.add_trace(go.Scatter(
     y=df_bs["COP"],
     mode = 'lines',
     name = "COP (kW/kW)",
-    line = dict(width = 1.0, color = "indigo", dash = "solid")
+    line = dict(width = 3.0, color = "indigo", dash = "solid")
     ),row = 1, col =1,secondary_y=True)
 
 #Adds metric
@@ -598,7 +598,7 @@ fig_CvsE.add_trace(go.Scatter(
     y=df_bs["COP"],
     mode = 'lines',
     name = "COP (kW/kW)",
-    line = dict(width = 1.0, color = "indigo", dash = "solid")
+    line = dict(width = 3.0, color = "indigo", dash = "solid")
     ),row = 1, col =2,secondary_y=False)
 
 #Adds metric
