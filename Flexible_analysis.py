@@ -200,6 +200,8 @@ cool_down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
     # Efficiency
 cool_eff = cool_down_flex_after/cool_down_flex
 
+df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex], "Energy shift (kWh)":[cool_down_flex_after], "CADR/E.Shift rat":[cool_eff]})
+
 #Electrical KPIs-----------------------------------------------
     # Total energy used during the day
 elec_total_bs = np.trapz(df_bs['e_w'], dx=dx)/(1000*3600)
@@ -225,6 +227,8 @@ elec_down_flex_after = (elec_drafter_dr - elec_drafter_bs)
 
     # Efficiency
 elec_eff = elec_down_flex_after/elec_down_flex
+
+df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex], "Energy shift (kWh)":[elec_down_flex_after], "CADR/E.Shift rat":elec_eff})
 
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
@@ -646,7 +650,9 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge_cool, use_container_width=True)
+    st.table(df_cool_table)
     st.plotly_chart(fig_gauge_elec, use_container_width=True)
+    st.table(df_elec_table)
 
 with col4:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
