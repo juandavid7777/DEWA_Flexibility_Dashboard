@@ -539,7 +539,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
         }))
 
 fig_gauge_cool.update_layout(
-    margin=dict(l=30, r=30, t=30, b=30)
+    margin=dict(l=30, r=30, t=30, b=10)
 )
 
 #Gauge plot electrical----------------------------------------------------------
@@ -567,7 +567,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
 
 
 fig_gauge_elec.update_layout(
-    margin=dict(l=30, r=30, t=30, b=30)
+    margin=dict(l=30, r=30, t=30, b=10)
 )
 
 
