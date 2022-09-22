@@ -563,7 +563,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
             {'range': [0, bs_cons], 'color': "mistyrose"},
             {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
         'bar':{'color':'darkred'}
-        }
+        },
     margin=dict(l=40, r=40, t=40, b=40)))
 
 # fig_gauge_elec.update_layout(
