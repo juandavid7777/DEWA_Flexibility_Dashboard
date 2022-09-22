@@ -463,7 +463,7 @@ if sp != fstp:
 
         #Annotation Ratio
     ratio_x = energy_x
-    ratio_y = df_bs["e_w"].max()*1.25
+    ratio_y = df_bs["qaux"].max()*1.25
     
     fig_dr_day_cool .add_annotation(x=ratio_x, y=ratio_y,
                 text="Energy shift/CADR ratio =" + str(round(cool_eff*100,2)) + "%",
