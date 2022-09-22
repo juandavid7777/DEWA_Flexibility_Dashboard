@@ -481,12 +481,35 @@ fig_dr_year.update_layout(
     )
 
 
-#Gauge plot----------------------------------------------------------
+#Gauge plot cooling----------------------------------------------------------
 bs_cons = cooling_total_bs
 dr_cons = cooling_total_dr
 
 
-fig_gauge = go.Figure(go.Indicator(
+fig_gauge_cool = go.Figure(go.Indicator(
+    mode = "number+gauge+delta", value = dr_cons,
+    domain = {'x': [0.1, 1], 'y': [0, 1]},
+    title = {'text' :"<b>Cooling. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,1)) + " kWh</span>"},
+    delta = {'reference': bs_cons, "relative" : True},
+    gauge = {
+        'shape': "angular",
+        'axis': {'range': [None, dr_cons*1.25]},
+        'threshold': {
+            'line': {'color': "royalblue", 'width': 5},
+            'thickness': 0.75,
+            'value': bs_cons},
+        'steps': [
+            {'range': [0, bs_cons], 'color': "dodgerblue"},
+            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
+        'bar':{'color':'darkblue'}
+        }))
+
+#Gauge plot electrical----------------------------------------------------------
+bs_cons = cooling_total_bs
+dr_cons = cooling_total_dr
+
+
+fig_gauge_elec = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Elect. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,1)) + " kWh</span>"},
@@ -592,8 +615,8 @@ st.markdown("""---""")
 st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>', unsafe_allow_html=True)
 col3, col4 = st.columns([1,2])
 with col3:
-    st.plotly_chart(fig_gauge, use_container_width=True)
-    st.plotly_chart(fig_gauge, use_container_width=True)
+    st.plotly_chart(fig_gauge_cool, use_container_width=True)
+    st.plotly_chart(fig_gauge_elec, use_container_width=True)
 
 with col4:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
