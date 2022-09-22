@@ -298,7 +298,7 @@ fig_dr_day.add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig_dr_day.update_layout(
-    # title="Model results",
+    title="Electrical consumption",
     xaxis_title="Time",
     yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
@@ -423,7 +423,7 @@ fig_dr_day_cool .add_trace(go.Scatter(
     ),secondary_y=True)
 
 fig_dr_day_cool .update_layout(
-    # title="Model results",
+    title="Cooling consumption",
     xaxis_title="Time",
     yaxis_title="HVAC cooling load (W)",
     legend_title="Variables",
