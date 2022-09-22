@@ -319,9 +319,135 @@ if sp != fstp:
                 yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
+# fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
 
-#Day selection-----------------------------------------------------------
+# Cooling graphs --------------------------------------------------------
+fig_dr_day_cool = make_subplots(specs=[[{"secondary_y": True}]])
+
+df_bs = df_bs.loc[date_day_str]
+df_dr = df_dr.loc[date_day_str]
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_bs['date'],
+    y=df_bs["qaux"],
+    mode = 'lines',
+    name = "HVAC Cooling baseline",
+    line = dict(width = 1.0, color = "red", dash = "solid")
+    ),secondary_y=False)
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["qaux"],
+    mode = 'lines',
+    name = "HVAC Cooling flexible",
+    line = dict(width = 2.0, color = "red", dash = "dash"),
+    fill='tonexty'
+    ),secondary_y=False)
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_bs['date'],
+    y=df_bs["tsp"],
+    mode = 'lines',
+    name = "Setpoint - baseline",
+    line = dict(width = 1.0, color = "blue", dash='solid')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["tsp2"],
+    mode = 'lines',
+    name = "Setpoint - flexible",
+    line = dict(width = 2.0, color = "blue", dash='dash')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_bs['date'],
+    y=df_bs["t1"],
+    mode = 'lines',
+    name = "Indoor air temperature",
+    line = dict(width = 1.0, color = "green", dash='solid')
+    ),secondary_y=True)
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["t1"],
+    mode = 'lines',
+    name = "Indoor air temperature",
+    line = dict(width = 2.0, color = "green", dash='dash')
+    ),secondary_y=True)
+
+
+    #Adds metric
+fig_dr_day_cool .add_trace(go.Scatter(
+    x=df_dr['date'],
+    y=df_dr["To"],
+    mode = 'lines',
+    name = "Ambient Temperature",
+    line = dict(width = 1.0, color = "orange")
+    ),secondary_y=True)
+
+fig_dr_day_cool .update_layout(
+    # title="Model results",
+    xaxis_title="Time",
+    yaxis_title="HVAC electrical load (W)",
+    legend_title="Variables",
+    )
+
+if sp != fstp:
+
+        #Annotation CADR
+    x1 = datetime.combine(date_day_select,hour_s).timestamp()
+    x2 = datetime.combine(date_day_select,hour_e).timestamp()
+    xa = (x2-x1)/2+x1
+    CADR_x = datetime.fromtimestamp(xa)
+
+    y2 = df_dr["e_w"].max()
+    y1 = df_bs.loc[roundTime(CADR_x, 60*6)]["e_w"]
+    ya = (y2-y1)*0.2+y1
+
+    CADR_y = ya
+    fig_dr_day_cool .add_annotation(x=CADR_x, y=CADR_y,
+                text="CADR = " + str(round(down_flex,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
+
+        #Annotation Energy unloaded
+    x1 = datetime.combine(date_day_select,hour_e).timestamp()
+    x2 = datetime.combine(date_day_select,time(23,59)).timestamp()
+    xe = (x2-x1)/2+x1
+    energy_x = datetime.fromtimestamp(xe)
+
+    y2 = df_bs["e_w"].max()
+    y1 = df_dr["e_w"].min()
+    ye = (y2-y1)*0.85+y1
+
+    energy_y = ye
+    fig_dr_day_cool .add_annotation(x=energy_x, y=energy_y,
+                text="Energy shift = " + str(round(down_flex_after,2)) + " kWh",
+                showarrow=False,
+                yshift=0)
+
+
+        #Annotation Ratio
+    ratio_x = energy_x
+    ratio_y = df_bs["e_w"].max()*1.25
+    
+    fig_dr_day_cool .add_annotation(x=ratio_x, y=ratio_y,
+                text="Energy shift/CADR ratio =" + str(round(eff*100,2)) + "%",
+                showarrow=False,
+                yshift=0)
+
+fig_dr_day_cool .update_yaxes(title_text="Temperature (C)", secondary_y=True)
+# fig_dr_day_cool .update_yaxes(range=[0, 50], secondary_y = True)
+
+
+#Day selection plot-----------------------------------------------------------
 fig_dr_year = make_subplots(specs=[[{"secondary_y": True}]])
 
 df_p = data
@@ -469,7 +595,9 @@ with col3:
     st.plotly_chart(fig_gauge, use_container_width=True)
 
 with col4:
-   st.plotly_chart(fig_dr_day, use_container_width=True)
+    st.plotly_chart(fig_dr_day_cool, use_container_width=True)
+    st.plotly_chart(fig_dr_day, use_container_width=True)
+
 
 
 
