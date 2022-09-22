@@ -527,7 +527,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "orchid"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
+            {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
         'bar':{'color':'indigo'}
         }))
 
@@ -550,7 +550,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "mistyrose"},
-            {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
+            {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
         'bar':{'color':'darkred'}
         }))
 
