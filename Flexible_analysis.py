@@ -656,9 +656,7 @@ with col3:
 
 with col4:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
-    st.table(df_cool_table)
     st.plotly_chart(fig_dr_day, use_container_width=True)
-    st.table(df_elec_table)
 
 
 
