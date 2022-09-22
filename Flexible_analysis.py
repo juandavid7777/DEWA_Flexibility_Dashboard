@@ -526,9 +526,9 @@ fig_gauge_cool = go.Figure(go.Indicator(
             'thickness': 0.75,
             'value': bs_cons},
         'steps': [
-            {'range': [0, bs_cons], 'color': "dodgerblue"},
+            {'range': [0, bs_cons], 'color': "darkviolet"},
             {'range': [bs_cons, dr_cons], 'color': "lightsalmon"}],
-        'bar':{'color':'darkblue'}
+        'bar':{'color':'indigo'}
         }))
 
 #Gauge plot electrical----------------------------------------------------------
