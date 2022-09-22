@@ -395,7 +395,7 @@ fig_dr_day_cool .add_trace(go.Scatter(
 fig_dr_day_cool .update_layout(
     # title="Model results",
     xaxis_title="Time",
-    yaxis_title="HVAC electrical load (W)",
+    yaxis_title="HVAC cooling load (W)",
     legend_title="Variables",
     )
 
