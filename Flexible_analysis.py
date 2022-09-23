@@ -663,7 +663,7 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col1, col2 = st.columns([1,2])
 with col1:
     st.plotly_chart(fig_gauge_cool, use_container_width=True)
-    # st.table(df_cool_table)
+    st.table(df_cool_table)
 
 with col2:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
