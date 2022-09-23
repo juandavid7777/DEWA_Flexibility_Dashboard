@@ -178,8 +178,10 @@ df_bs["e_w"] = df_bs["qaux"]/df_bs["COP"]
 #Estimates KPIs
 df_bs = df_bs.loc[date_day_str]
 df_dr = df_dr.loc[date_day_str]
-
 dx = 6*60
+
+peak_hour_s = peak_time_select[0]
+peak_hour_e = peak_time_select[1]
 
 #Cooling KPIs--------------------------------------------------
     # Total energy used during the day
@@ -207,7 +209,15 @@ cool_down_flex_after = (cooling_drafter_dr - cooling_drafter_bs)
     # Efficiency
 cool_eff = cool_down_flex_after/cool_down_flex
 
-df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex], "Energy shift (kWh)":[cool_down_flex_after], "CADR/E.Shift rat":[cool_eff]})
+    #Peak time analysis
+bs_avgpeak_coolpower = df_bs.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
+dr_avgpeak_coolpower = df_dr.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
+
+cool_befi = (bs_avgpeak_coolpower - dr_avgpeak_coolpower)/1000
+cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)
+
+    #Summary table
+df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex], "Energy shift (kWh)":[cool_down_flex_after], "CADR/E.Shift rat":[cool_eff], "Peak hours power reduction (kW_": [cool_befi]})
 
 #Electrical KPIs-----------------------------------------------
     # Total energy used during the day
@@ -235,7 +245,15 @@ elec_down_flex_after = (elec_drafter_dr - elec_drafter_bs)
     # Efficiency
 elec_eff = elec_down_flex_after/elec_down_flex
 
-df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex], "Energy shift (kWh)":[elec_down_flex_after], "CADR/E.Shift rat":elec_eff})
+    #Peak time analysis
+bs_avgpeak_elecpower = df_bs.loc[peak_hour_s:peak_hour_e]["e_w"].mean()
+dr_avgpeak_elecpower = df_dr.loc[peak_hour_s:peak_hour_e]["e_w"].mean()
+
+elec_befi = (bs_avgpeak_elecpower - dr_avgpeak_elecpower)/1000
+elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)
+
+    #Summary table
+df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex], "Energy shift (kWh)":[elec_down_flex_after], "CADR/E.Shift rat":[elec_eff], "Peak hours power reduction (kW_": [elec_befi]})
 
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
