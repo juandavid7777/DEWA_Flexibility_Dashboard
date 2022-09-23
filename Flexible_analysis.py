@@ -526,7 +526,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
     title = {'text' :"<b>Cooling. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True, 'valueformat':".2%"},
     gauge = {
-        'shape': "angular",
+        'shape': "bullet",
         'axis': {'range': [None, dr_cons*1.25]},
         'threshold': {
             'line': {'color': "indigo", 'width': 3},
@@ -538,9 +538,10 @@ fig_gauge_cool = go.Figure(go.Indicator(
         'bar':{'color':'indigo'}
         }))
 
-# fig_gauge_cool.update_layout(
-#     margin=dict(l=30, r=30, t=10, b=10)
-# )
+fig_gauge_cool.update_layout(
+    margin=dict(l=30, r=30, t=10, b=10),
+    height = 250
+)
 
 #Gauge plot electrical----------------------------------------------------------
 bs_cons = elec_total_bs
