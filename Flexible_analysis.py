@@ -472,6 +472,9 @@ fig_dr_day_cool .update_layout(
 
 if sp != fstp:
 
+    fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_s),  line_width=1, line_dash="dot", line_color="grey")
+    fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_e),  line_width=1, line_dash="dot", line_color="grey")
+
         #Annotation CADR
     x1 = datetime.combine(date_day_select,hour_s).timestamp()
     x2 = datetime.combine(date_day_select,hour_e).timestamp()
