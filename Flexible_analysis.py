@@ -539,8 +539,8 @@ fig_gauge_cool = go.Figure(go.Indicator(
         }))
 
 fig_gauge_cool.update_layout(
-    margin=dict(l=30, r=30, t=10, b=10),
-    height = 100,
+    margin=dict(l=30, r=30, t=80, b=10),
+    height = 180,
     width = 200
 )
 
