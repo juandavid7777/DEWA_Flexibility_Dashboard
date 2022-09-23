@@ -214,13 +214,14 @@ bs_avgpeak_coolpower = df_bs.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
 dr_avgpeak_coolpower = df_dr.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
 
 cool_befi = (bs_avgpeak_coolpower - dr_avgpeak_coolpower)/1000
-cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)
+cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)*100
 
     #Summary table
 df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
 "Energy shift (kWh)":[cool_down_flex_after],
 "CADR/E.Shift rat":[cool_eff],
-"Peak hours power reduction (kW)": [cool_befi],
+"Peak-h reduction (kW)": [cool_befi],
+"Peak-h reduction (%)": [cool_befi_p]
 })
 
 #Electrical KPIs-----------------------------------------------
@@ -254,13 +255,14 @@ bs_avgpeak_elecpower = df_bs.loc[peak_hour_s:peak_hour_e]["e_w"].mean()
 dr_avgpeak_elecpower = df_dr.loc[peak_hour_s:peak_hour_e]["e_w"].mean()
 
 elec_befi = (bs_avgpeak_elecpower - dr_avgpeak_elecpower)/1000
-elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)
+elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)*100
 
     #Summary table
 df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
 "Energy shift (kWh)":[elec_down_flex_after],
 "CADR/E.Shift rat":[elec_eff],
-"Peak hours power reduction (kW)": [elec_befi]})
+"Peak-h reduction (kW)": [elec_befi],
+"Peak-h reduction (%)": [elec_befi_p]})
 
 #Plotting -------------------------------------------------------------------------------------   
 fig_dr_day = make_subplots(specs=[[{"secondary_y": True}]])
