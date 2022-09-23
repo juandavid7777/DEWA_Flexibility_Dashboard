@@ -33,12 +33,19 @@ date_day_select = st.sidebar.date_input(
      max_value = datetime(2019, 12, 30)
      )
 
-
 dr_time = st.sidebar.slider(
      "Demand response event time:",
      value=(time(3, 00), time(8, 00)))
 
 setpoint_bool = st.sidebar.checkbox('Flexible event for prev. days')
+
+st.sidebar.markdown("""---""")
+
+peak_time_select = st.sidebar.slider(
+     "Peak time",
+     value=(time(12, 00), time(18, 00))
+     )
+
 
 
 # Material properties -------------------------------------------------------------------------
