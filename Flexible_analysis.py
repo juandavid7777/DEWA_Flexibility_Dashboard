@@ -36,7 +36,7 @@ date_day_select = st.sidebar.date_input(
 
 dr_time = st.sidebar.slider(
      "Demand response event time:",
-     value=(time(7, 00), time(13, 00)))
+     value=(time(3, 00), time(8, 00)))
 
 setpoint_bool = st.sidebar.checkbox('Flexible event for prev. days')
 
@@ -673,7 +673,7 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col1, col2 = st.columns([1,2])
 with col1:
     st.plotly_chart(fig_gauge_cool, use_container_width=True)
-    
+
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
     st.table(df_cool_table)
