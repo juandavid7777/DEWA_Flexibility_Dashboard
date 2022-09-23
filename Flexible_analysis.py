@@ -641,6 +641,16 @@ fig_CvsE.update_yaxes(range=[0, 50], title_text = "Ambient Temperature (C)", sec
 
 # Setting up page-----------------------------------------------------------------
 
+    #To eras indices column
+    # CSS to inject contained in a string
+hide_table_row_index = """
+            <style>
+            thead tr th:first-child {display:none}
+            tbody th {display:none}
+            </style>
+                """
+
+
     #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Flexibility analysis for a simplified building in Dubai</b>', unsafe_allow_html=True)
 
@@ -663,6 +673,9 @@ st.markdown('<b style="color:midnightblue ; font-size: 25px">Model results</b>',
 col1, col2 = st.columns([1,2])
 with col1:
     st.plotly_chart(fig_gauge_cool, use_container_width=True)
+    
+    # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
     st.table(df_cool_table)
 
 with col2:
@@ -672,6 +685,9 @@ with col2:
 col3, col4 = st.columns([1,2])
 with col3:
     st.plotly_chart(fig_gauge_elec, use_container_width=True)
+
+    # Inject CSS with Markdown
+    st.markdown(hide_table_row_index, unsafe_allow_html=True)
     st.table(df_elec_table)
 
 with col4:
