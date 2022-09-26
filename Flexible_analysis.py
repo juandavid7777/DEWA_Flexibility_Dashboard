@@ -214,15 +214,22 @@ bs_avgpeak_coolpower = df_bs.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
 dr_avgpeak_coolpower = df_dr.loc[peak_hour_s:peak_hour_e]["qaux"].mean()
 
 cool_befi = (bs_avgpeak_coolpower - dr_avgpeak_coolpower)/1000
-cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)*100
+cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)
 
     #Summary table
-df_cool_table = pd.DataFrame({"CADR (kWh)":[round(cool_down_flex,2)],
-"Energy shift (kWh)":[round(cool_down_flex_after,2)],
-"CADR/E.Shift rat":[round(cool_eff*100,2)],
-"Peak-h reduction (kW)": [round(cool_befi,3)],
-"Peak-h reduction (%)": [round(cool_befi_p,2)]
+df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
+"Energy shift (kWh)":[cool_down_flex_after],
+"CADR/E.Shift rat":[cool_eff],
+"Peak-h reduction (kW)": [cool_befi],
+"Peak-h reduction (%)": [cool_befi_p]
 })
+
+    # Formats summary table
+df_cool_table["CADR (kWh)"] = df_cool_table["CADR (kWh)"].map('{:,.2f}'.format)
+df_cool_table["Energy shift (kWh)"] = df_cool_table["Energy shift (kWh)"].map('{:,.2f}'.format)
+df_cool_table["CADR/E.Shift (%)"] = df_cool_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_cool_table["Peak-h reduction (kW)"] = df_cool_table["Peak-h reduction (kW)"].map('{:,.3f}'.format)
+df_cool_table["Peak-h reduction (%)"] = df_cool_table["Peak-h reduction (%)"].map('{:,.2%}'.format)
 
 #Electrical KPIs-----------------------------------------------
     # Total energy used during the day
