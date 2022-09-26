@@ -257,14 +257,19 @@ dr_avgpeak_elecpower = df_dr.loc[peak_hour_s:peak_hour_e]["e_w"].mean()
 elec_befi = (bs_avgpeak_elecpower - dr_avgpeak_elecpower)/1000
 elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)*100
 
-    #Summary table
+    # Summary table
 df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
 "Energy shift (kWh)":[elec_down_flex_after],
 "CADR/E.Shift (%)":[elec_eff],
 "Peak-h reduction (kW)": [elec_befi],
 "Peak-h reduction (%)": [elec_befi_p]})
 
-df_elec_table["CADR (kWh)"] = df_elec_table["CADR (kWh)"].map('${:,.2f}'.format)
+    # Formats summary table
+df_elec_table["CADR (kWh)"] = df_elec_table["CADR (kWh)"].map('{:,.2f}'.format)
+df_elec_table["Energy shift (kWh)"] = df_elec_table["Energy shift (kWh)"].map('{:,.2f}'.format)
+df_elec_table["CADR/E.Shift (%)"] = df_elec_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_elec_table["Peak-h reduction (kW)"] = df_elec_table["Peak-h reduction (kW)"].map('{:,.2f}'.format)
+df_elec_table["Peak-h reduction (%)"] = df_elec_table["Peak-h reduction (%)"].map('{:,.2%}'.format)
 
 # df_elec_table.style.format({"CADR (kWh)": "{:.2%}",
 # "Energy shift (kWh)" : "{:.2%}",
