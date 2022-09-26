@@ -227,9 +227,9 @@ df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
     # Formats summary table
 df_cool_table["CADR (kWh)"] = df_cool_table["CADR (kWh)"].map('{:,.2f}'.format)
 df_cool_table["Energy shift (kWh)"] = df_cool_table["Energy shift (kWh)"].map('{:,.2f}'.format)
-df_cool_table["CADR/E.Shift (%)"] = df_cool_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_cool_table["CADR/E.Shift (%)"] = df_cool_table["CADR/E.Shift (%)"].map('{:,.1%}'.format)
 df_cool_table["Peak-h reduction (kW)"] = df_cool_table["Peak-h reduction (kW)"].map('{:,.3f}'.format)
-df_cool_table["Peak-h reduction (%)"] = df_cool_table["Peak-h reduction (%)"].map('{:,.2%}'.format)
+df_cool_table["Peak-h reduction (%)"] = df_cool_table["Peak-h reduction (%)"].map('{:,.1%}'.format)
 
 #Electrical KPIs-----------------------------------------------
     # Total energy used during the day
@@ -274,9 +274,9 @@ df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
     # Formats summary table
 df_elec_table["CADR (kWh)"] = df_elec_table["CADR (kWh)"].map('{:,.2f}'.format)
 df_elec_table["Energy shift (kWh)"] = df_elec_table["Energy shift (kWh)"].map('{:,.2f}'.format)
-df_elec_table["CADR/E.Shift (%)"] = df_elec_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_elec_table["CADR/E.Shift (%)"] = df_elec_table["CADR/E.Shift (%)"].map('{:,.1%}'.format)
 df_elec_table["Peak-h reduction (kW)"] = df_elec_table["Peak-h reduction (kW)"].map('{:,.3f}'.format)
-df_elec_table["Peak-h reduction (%)"] = df_elec_table["Peak-h reduction (%)"].map('{:,.2%}'.format)
+df_elec_table["Peak-h reduction (%)"] = df_elec_table["Peak-h reduction (%)"].map('{:,.1%}'.format)
 
 
 #Plotting -------------------------------------------------------------------------------------   
