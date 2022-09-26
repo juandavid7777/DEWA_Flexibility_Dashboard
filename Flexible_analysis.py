@@ -219,7 +219,7 @@ cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)
     #Summary table
 df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
 "Energy shift (kWh)":[cool_down_flex_after],
-"CADR/E.Shift rat":[cool_eff],
+"CADR/E.Shift (%)":[cool_eff],
 "Peak-h reduction (kW)": [cool_befi],
 "Peak-h reduction (%)": [cool_befi_p]
 })
