@@ -260,7 +260,7 @@ elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)*100
     #Summary table
 df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
 "Energy shift (kWh)":[elec_down_flex_after],
-"CADR/E.Shift rat":[elec_eff],
+"CADR/E.Shift (%)":[elec_eff],
 "Peak-h reduction (kW)": [elec_befi],
 "Peak-h reduction (%)": [elec_befi_p]})
 
