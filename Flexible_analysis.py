@@ -221,7 +221,7 @@ df_cool_table = pd.DataFrame({"CADR (kWh)":[round(cool_down_flex,2)],
 "Energy shift (kWh)":[round(cool_down_flex_after,2)],
 "CADR/E.Shift rat":[round(cool_eff*100,2)],
 "Peak-h reduction (kW)": [round(cool_befi,3)],
-"Peak-h reduction (%)": [(cool_befi_p,2)]
+"Peak-h reduction (%)": [round(cool_befi_p,2)]
 })
 
 #Electrical KPIs-----------------------------------------------
