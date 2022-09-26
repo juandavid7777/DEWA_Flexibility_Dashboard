@@ -723,7 +723,12 @@ with col1:
 
     # Inject CSS with Markdown
     st.markdown(hide_table_row_index, unsafe_allow_html=True)
-    st.table(df_cool_table)
+    st.table(df_cool_table, {"CADR (kWh)": "{:.2%}",
+    "Energy shift (kWh)" : "{:.2%}",
+    "CADR/E.Shift (%)": "{:.2%}",
+    "Peak-h reduction (kW)": "{:.2%}",
+    "Peak-h reduction (%)": "{:.2%}",
+})
 
 with col2:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
