@@ -264,7 +264,7 @@ df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
 "Peak-h reduction (kW)": [elec_befi],
 "Peak-h reduction (%)": [elec_befi_p]})
 
-df_elec_table.style = df_elec_table.style.format({"CADR (kWh)": "{:.2%}",
+df_elec_table.style.format({"CADR (kWh)": "{:.2%}",
 "Energy shift (kWh)" : "{:.2%}",
 "CADR/E.Shift (%)": "{:.2%}",
 "Peak-h reduction (kW)": "{:.2%}",
