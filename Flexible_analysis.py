@@ -728,7 +728,7 @@ with col1:
     "CADR/E.Shift (%)": "{:.2%}",
     "Peak-h reduction (kW)": "{:.2%}",
     "Peak-h reduction (%)": "{:.2%}",
-})
+    })
 
 with col2:
     st.plotly_chart(fig_dr_day_cool, use_container_width=True)
