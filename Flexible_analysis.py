@@ -217,11 +217,11 @@ cool_befi = (bs_avgpeak_coolpower - dr_avgpeak_coolpower)/1000
 cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)*100
 
     #Summary table
-df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
-"Energy shift (kWh)":[cool_down_flex_after],
-"CADR/E.Shift rat":[cool_eff],
-"Peak-h reduction (kW)": [cool_befi],
-"Peak-h reduction (%)": [cool_befi_p]
+df_cool_table = pd.DataFrame({"CADR (kWh)":[round(cool_down_flex,2)],
+"Energy shift (kWh)":[round(cool_down_flex_after,2)],
+"CADR/E.Shift rat":[round(cool_eff*100,2)],
+"Peak-h reduction (kW)": [round(cool_befi,3)],
+"Peak-h reduction (%)": [(cool_befi_p,2)]
 })
 
 #Electrical KPIs-----------------------------------------------
