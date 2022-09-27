@@ -219,7 +219,7 @@ cool_befi_p = cool_befi/(bs_avgpeak_coolpower/1000)
     #Summary table
 df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
 "Energy shift (kWh)":[cool_down_flex_after],
-"CADR/E.Shift (%)":[cool_eff],
+"E.Shift/CADR (%)":[cool_eff],
 "Peak-h reduction (kW)": [cool_befi],
 "Peak-h reduction (%)": [cool_befi_p]
 })
@@ -227,7 +227,7 @@ df_cool_table = pd.DataFrame({"CADR (kWh)":[cool_down_flex],
     # Formats summary table
 df_cool_table["CADR (kWh)"] = df_cool_table["CADR (kWh)"].map('{:,.2f}'.format)
 df_cool_table["Energy shift (kWh)"] = df_cool_table["Energy shift (kWh)"].map('{:,.2f}'.format)
-df_cool_table["CADR/E.Shift (%)"] = df_cool_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_cool_table["E.Shift/CADR (%)"] = df_cool_table["E.Shift/CADR (%)"].map('{:,.2%}'.format)
 df_cool_table["Peak-h reduction (kW)"] = df_cool_table["Peak-h reduction (kW)"].map('{:,.3f}'.format)
 df_cool_table["Peak-h reduction (%)"] = df_cool_table["Peak-h reduction (%)"].map('{:,.1%}'.format)
 
@@ -267,14 +267,14 @@ elec_befi_p = elec_befi/(bs_avgpeak_elecpower/1000)
     # Summary table
 df_elec_table = pd.DataFrame({"CADR (kWh)":[elec_down_flex],
 "Energy shift (kWh)":[elec_down_flex_after],
-"CADR/E.Shift (%)":[elec_eff],
+"E.Shift/CADR (%)":[elec_eff],
 "Peak-h reduction (kW)": [elec_befi],
 "Peak-h reduction (%)": [elec_befi_p]})
 
     # Formats summary table
 df_elec_table["CADR (kWh)"] = df_elec_table["CADR (kWh)"].map('{:,.2f}'.format)
 df_elec_table["Energy shift (kWh)"] = df_elec_table["Energy shift (kWh)"].map('{:,.2f}'.format)
-df_elec_table["CADR/E.Shift (%)"] = df_elec_table["CADR/E.Shift (%)"].map('{:,.2%}'.format)
+df_elec_table["E.Shift/CADR (%)"] = df_elec_table["E.Shift/CADR (%)"].map('{:,.2%}'.format)
 df_elec_table["Peak-h reduction (kW)"] = df_elec_table["Peak-h reduction (kW)"].map('{:,.3f}'.format)
 df_elec_table["Peak-h reduction (%)"] = df_elec_table["Peak-h reduction (%)"].map('{:,.1%}'.format)
 
