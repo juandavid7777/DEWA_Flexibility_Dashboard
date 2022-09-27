@@ -357,11 +357,10 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
+fig_dr_day.add_vline(x=datetime.combine(date_day_select,peak_hour_s),  line_width=1, line_dash="dot", line_color="grey")
+fig_dr_day.add_vline(x=datetime.combine(date_day_select,peak_hour_e),  line_width=1, line_dash="dot", line_color="grey")
+
 if sp != fstp:
-
-    fig_dr_day.add_vline(x=datetime.combine(date_day_select,peak_hour_s),  line_width=1, line_dash="dot", line_color="grey")
-    fig_dr_day.add_vline(x=datetime.combine(date_day_select,peak_hour_e),  line_width=1, line_dash="dot", line_color="grey")
-
         #Annotation CADR
     x1 = datetime.combine(date_day_select,hour_s).timestamp()
     x2 = datetime.combine(date_day_select,hour_e).timestamp()
@@ -405,7 +404,6 @@ if sp != fstp:
                 yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-# fig_dr_day.update_yaxes(range=[0, 50], secondary_y = True)
 
 # Cooling graphs --------------------------------------------------------
 fig_dr_day_cool = make_subplots(specs=[[{"secondary_y": True}]])
@@ -485,10 +483,10 @@ fig_dr_day_cool .update_layout(
     legend_title="Variables",
     )
 
-if sp != fstp:
+fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_s),  line_width=1, line_dash="dot", line_color="grey")
+fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_e),  line_width=1, line_dash="dot", line_color="grey")
 
-    fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_s),  line_width=1, line_dash="dot", line_color="grey")
-    fig_dr_day_cool.add_vline(x=datetime.combine(date_day_select,peak_hour_e),  line_width=1, line_dash="dot", line_color="grey")
+if sp != fstp:
 
         #Annotation CADR
     x1 = datetime.combine(date_day_select,hour_s).timestamp()
@@ -533,7 +531,6 @@ if sp != fstp:
                 yshift=0)
 
 fig_dr_day_cool .update_yaxes(title_text="Temperature (C)", secondary_y=True)
-# fig_dr_day_cool .update_yaxes(range=[0, 50], secondary_y = True)
 
 
 #Day selection plot-----------------------------------------------------------
