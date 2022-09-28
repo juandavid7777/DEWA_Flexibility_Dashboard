@@ -404,7 +404,9 @@ if sp != fstp:
                 yshift=0)
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = {"size": 20})
-# fig_dr_day.update_layout(yaxis = dict(font = dict(size=30)))
+fig_dr_day.update_yaxes(secondary_y=False, titlefont = {"size": 20})
+fig_dr_day.update_xaxes(secondary_y=False, titlefont = {"size": 20})
+
 
 # Cooling graphs --------------------------------------------------------
 fig_dr_day_cool = make_subplots(specs=[[{"secondary_y": True}]])
