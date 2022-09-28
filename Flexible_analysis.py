@@ -403,7 +403,7 @@ if sp != fstp:
                 showarrow=False,
                 yshift=0)
 
-fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = 30)
+fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True, size = 30)
 # fig_dr_day.update_layout(yaxis = dict(font = dict(size=30)))
 
 # Cooling graphs --------------------------------------------------------
