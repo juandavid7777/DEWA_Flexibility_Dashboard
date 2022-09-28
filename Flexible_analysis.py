@@ -608,6 +608,11 @@ fig_gauge_cool.update_layout(
 bs_cons = elec_total_bs
 dr_cons = elec_total_dr
 
+if bs_cons >= dr_cons:
+    color_gauge = "green"
+else:
+    color_gauge = "red"
+
 
 fig_gauge_elec = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
@@ -623,7 +628,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "mistyrose"},
-            {'range': [bs_cons, dr_cons], 'color': "red"}],
+            {'range': [bs_cons, dr_cons], 'color': color_gauge}],
         'bar':{'color':'darkred'}
         }))
 
