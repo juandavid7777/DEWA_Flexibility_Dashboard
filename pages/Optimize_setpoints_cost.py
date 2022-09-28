@@ -193,7 +193,7 @@ fig_cost.update_layout(
     legend_title="Variables",
     )
 
-fig_cost.update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_cost.update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = {"size": 20})
 fig_cost.update_yaxes(secondary_y=False, titlefont = {"size": 20})
 fig_cost.update_xaxes(titlefont = {"size": 20})
 
@@ -245,7 +245,7 @@ fig_dr_day.update_layout(
     legend_title="Variables",
     )
 
-fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = {"size": 20})
 fig_dr_day.update_yaxes(secondary_y=False, titlefont = {"size": 20})
 fig_dr_day.update_xaxes(titlefont = {"size": 20})
 
