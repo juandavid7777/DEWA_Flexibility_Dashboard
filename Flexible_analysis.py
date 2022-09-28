@@ -167,8 +167,8 @@ data_sim = data_sim.reset_index(drop = True)
 df_dr = pd.concat([data_sim, result], axis=1).set_index("date", drop = False)
 
 #Estimates COP
-df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
-df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/2000*100), axis = 1)
+df_dr["COP"] = df_dr.apply(lambda x: chillerCOP(x["To"], x["qaux"]/qmax*100), axis = 1)
+df_bs["COP"] = df_bs.apply(lambda x: chillerCOP(x["To"], x["qaux"]/qmax*100), axis = 1)
 
 #Estimates electricity 
 df_dr["e_w"] = df_dr["qaux"]/df_dr["COP"]
@@ -352,7 +352,7 @@ fig_dr_day.add_trace(go.Scatter(
 
 fig_dr_day.update_layout(
     title="Electrical consumption",
-    xaxis_title="Time",
+    xaxis_title="Day Time",
     yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
     )
@@ -481,7 +481,7 @@ fig_dr_day_cool .add_trace(go.Scatter(
 
 fig_dr_day_cool .update_layout(
     title="Cooling consumption",
-    xaxis_title="Time",
+    xaxis_title="Day Time",
     yaxis_title="HVAC cooling load (W)",
     legend_title="Variables",
     )
@@ -566,10 +566,13 @@ fig_dr_year.update_traces(marker_size=10)
 
 fig_dr_year.update_layout(
     title="Weather on selected day",
-    xaxis_title="Time",
+    xaxis_title="Day Time",
     yaxis_title="Ambient Temperature (C)",
     legend_title="Variables",
     )
+
+fig_dr_year.update_yaxes(secondary_y=False, titlefont = {"size": 20})
+fig_dr_year.update_xaxes(titlefont = {"size": 20})
 
 
 #Gauge plot cooling----------------------------------------------------------
