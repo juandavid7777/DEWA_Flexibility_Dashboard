@@ -579,6 +579,10 @@ fig_dr_year.update_xaxes(titlefont = {"size": 20})
 bs_cons = cooling_total_bs
 dr_cons = cooling_total_dr
 
+if bs_cons >= dr_cons:
+    color_gauge = "#3D9970"
+else:
+    color_gauge = "#FF4136"
 
 fig_gauge_cool = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
@@ -594,7 +598,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "orchid"},
-            {'range': [bs_cons, dr_cons], 'color': "red"}],
+            {'range': [bs_cons, dr_cons], 'color': color_gauge}],
         'bar':{'color':'indigo'}
         }))
 
