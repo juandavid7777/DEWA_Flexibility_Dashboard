@@ -585,7 +585,8 @@ else:
     color_gauge = "#FF4136"
 
 fig_gauge_cool = go.Figure(go.Indicator(
-    mode = "number+gauge+delta", value = dr_cons,
+    mode = "number+gauge+delta",
+    value = dr_cons,
     number = {'valueformat':".2f"},
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Cooling. (kWh)</b><br><span style='color: darkblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
@@ -620,7 +621,8 @@ else:
 
 
 fig_gauge_elec = go.Figure(go.Indicator(
-    mode = "number+gauge+delta", value = dr_cons,
+    mode = "number+gauge+delta",
+    value = dr_cons,
     number = {'valueformat':".2f"},
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Elect. (kWh)</b><br><span style='color: darkblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},

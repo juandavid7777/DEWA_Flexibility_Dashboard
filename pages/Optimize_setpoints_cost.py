@@ -185,14 +185,6 @@ fig_cost.add_trace(go.Scatter(
     line = dict(width = 2.0, color = "green", dash='dash')
     ),secondary_y=True)
 
-#     #Adds metric
-# fig_cost.add_trace(go.Scatter(
-#     x=df['date'],
-#     y=df["To"],
-#     mode = 'lines',
-#     name = "Ambient Temperature",
-#     line = dict(width = 1.0, color = "orange")
-#     ),secondary_y=True)
 
 fig_cost.update_layout(
     # title="Model results",
@@ -202,7 +194,9 @@ fig_cost.update_layout(
     )
 
 fig_cost.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-# fig_cost.update_yaxes(range=[0, 65], secondary_y = True)
+fig_cost.update_yaxes(secondary_y=False, titlefont = {"size": 20})
+fig_cost.update_xaxes(titlefont = {"size": 20})
+
 
 # Second plot ---------------------------------------------------------
 
@@ -252,7 +246,8 @@ fig_dr_day.update_layout(
     )
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True)
-# fig_dr_day.update_yaxes(range=[0, 65], secondary_y = True)
+fig_dr_day.update_yaxes(secondary_y=False, titlefont = {"size": 20})
+fig_dr_day.update_xaxes(titlefont = {"size": 20})
 
 # Layout --------------------------------------------------------------
 
