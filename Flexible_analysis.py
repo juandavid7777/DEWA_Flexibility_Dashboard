@@ -609,9 +609,9 @@ bs_cons = elec_total_bs
 dr_cons = elec_total_dr
 
 if bs_cons >= dr_cons:
-    color_gauge = "green"
+    color_gauge = "#3D9970"
 else:
-    color_gauge = "red"
+    color_gauge = "#FF4136"
 
 
 fig_gauge_elec = go.Figure(go.Indicator(
