@@ -584,7 +584,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Cooling. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
-    delta = {'reference': bs_cons, "relative" : True, 'valueformat':".2%"},
+    delta = {'reference': bs_cons, "relative" : True, 'valueformat':".2%", "increasing":{"color":"#FF4136", "symbol": "▲"},"decreasing":{"color":"#3D9970", "symbol":"▼"}},
     gauge = {
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
@@ -594,7 +594,7 @@ fig_gauge_cool = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "orchid"},
-            {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
+            {'range': [bs_cons, dr_cons], 'color': "red"}],
         'bar':{'color':'indigo'}
         }))
 
@@ -623,7 +623,7 @@ fig_gauge_elec = go.Figure(go.Indicator(
             'value': bs_cons},
         'steps': [
             {'range': [0, bs_cons], 'color': "mistyrose"},
-            {'range': [bs_cons, dr_cons], 'color': "forestgreen"}],
+            {'range': [bs_cons, dr_cons], 'color': "red"}],
         'bar':{'color':'darkred'}
         }))
 
