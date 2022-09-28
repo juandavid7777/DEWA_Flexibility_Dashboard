@@ -533,7 +533,9 @@ if sp != fstp:
                 showarrow=False,
                 yshift=0)
 
-fig_dr_day_cool .update_yaxes(title_text="Temperature (C)", secondary_y=True)
+fig_dr_day_cool .update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = {"size": 20})
+fig_dr_day_cool.update_yaxes(secondary_y=False, titlefont = {"size": 20})
+fig_dr_day_cool.update_xaxes(titlefont = {"size": 20})
 
 
 #Day selection plot-----------------------------------------------------------
