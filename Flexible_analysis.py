@@ -586,7 +586,7 @@ else:
 
 fig_gauge_cool = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
-    number = {'valueformat':".2f"}
+    number = {'valueformat':".2f"},
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Cooling. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True, 'valueformat':".2%", "increasing":{"color":"#FF4136", "symbol": "▲"},"decreasing":{"color":"#3D9970", "symbol":"▼"}},
@@ -621,7 +621,7 @@ else:
 
 fig_gauge_elec = go.Figure(go.Indicator(
     mode = "number+gauge+delta", value = dr_cons,
-    number = {'valueformat':".2f"}
+    number = {'valueformat':".2f"},
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Elect. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True, 'valueformat':".2%", "increasing":{"color":"#FF4136", "symbol": "▲"},"decreasing":{"color":"#3D9970", "symbol":"▼"}},
