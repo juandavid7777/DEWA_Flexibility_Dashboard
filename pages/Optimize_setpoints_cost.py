@@ -188,7 +188,7 @@ fig_cost.add_trace(go.Scatter(
 
 fig_cost.update_layout(
     # title="Model results",
-    xaxis_title="Time",
+    xaxis_title="Day Time",
     yaxis_title="Cost (AED)",
     legend_title="Variables",
     )
@@ -240,7 +240,7 @@ fig_dr_day.add_trace(go.Scatter(
 
 fig_dr_day.update_layout(
     # title="Model results",
-    xaxis_title="Time",
+    xaxis_title="Day Time",
     yaxis_title="HVAC electrical load (W)",
     legend_title="Variables",
     )
