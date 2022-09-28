@@ -614,9 +614,9 @@ fig_gauge_elec = go.Figure(go.Indicator(
     domain = {'x': [0.1, 1], 'y': [0, 1]},
     title = {'text' :"<b>Elect. (kWh)</b><br><span style='color: royalblue; font-size:0.7em'>Baseline " + str(round(bs_cons,2)) + " kWh</span>"},
     delta = {'reference': bs_cons, "relative" : True,
-        'valueformat':".2%",
-        "increasing":{"color":"red"},
-        "decreasing":{"color":"green"}},
+        'valueformat':".2%"},
+        # "increasing":{"color":"red"},
+        # "decreasing":{"color":"green"}},
     gauge = {
         'shape': "angular",
         'axis': {'range': [None, dr_cons*1.25]},
