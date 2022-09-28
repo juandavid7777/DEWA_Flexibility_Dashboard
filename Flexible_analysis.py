@@ -405,7 +405,7 @@ if sp != fstp:
 
 fig_dr_day.update_yaxes(title_text="Temperature (C)", secondary_y=True, titlefont = {"size": 20})
 fig_dr_day.update_yaxes(secondary_y=False, titlefont = {"size": 20})
-fig_dr_day.update_xaxes(secondary_y=False, titlefont = {"size": 20})
+fig_dr_day.update_xaxes(titlefont = {"size": 20})
 
 
 # Cooling graphs --------------------------------------------------------
